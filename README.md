@@ -39,6 +39,8 @@
 
 # 📖 Personal Portfolio <a name="about-project"></a>
 
+Hello! Here you will see my first personal portfolio web-page.
+
 ## 🛠 Built With HTML & CSS <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
@@ -95,15 +97,11 @@ Clone this repository to your desired folder.
 
 ### Run tests 
 
-To run tests, run the following command:
-
-- $ git status
+Tests have not applied yet
 
 ### Deployment
 
-You can deploy this project using:
-
-- 
+The project has not been deployed yet
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
