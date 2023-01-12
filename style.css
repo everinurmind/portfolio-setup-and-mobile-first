@@ -1,0 +1,96 @@
+
+.parent {
+    position: relative;
+    top: 0;
+    left: 0;
+    justify-content: center;
+  }
+  
+  .image1 {
+    position: relative;
+    top: 0;
+    left: 0;
+    border: 1px solid #000000;
+  }
+  
+  .image2 {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    border: 1px solid #000000;
+  }
+
+  .header {
+    
+  }
+
+  .logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 12px;
+
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    left: 12px;
+    top: 2px;
+  }
+
+  .button {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 8px;
+
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    right: 24px;
+    top: 2px;
+    border-radius: 8px;
+    
+  }
+
+  .icons {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    left: 3px;
+    top: 27px;
+    background: #ffffff;
+  }
+
+  .bar1 {
+    position: absolute;
+    left: 16.67%;
+    right: 16.67%;
+    top: 70.83%;
+    bottom: 29.17%;
+    border: 2px solid #6070FF;
+
+  }
+
+  .bar2 {
+    position: absolute;
+    left: 16.67%;
+    right: 16.67%;
+    top: 50%;
+    bottom: 50%;
+    border: 2px solid #6070FF;
+  }
+
+  .bar3 {
+    position: absolute;
+    left: 16.67%;
+    right: 16.67%;
+    top: 29.17%;
+    bottom: 70.83%;
+    border: 2px solid #6070FF;
+  }
+
+  .headline {
+    position: relative;
+
+  }
+
