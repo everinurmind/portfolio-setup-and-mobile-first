@@ -111,7 +111,7 @@
   }
 
   .media {
-    padding: 10px;
+    margin-right: 19px;
   }
 
   .media img {
@@ -130,6 +130,7 @@
     padding: 10px 0 15px;
     background-color: transparent;
     border: none;
+    margin-bottom: 12px;
   }
 
   .button:hover {
