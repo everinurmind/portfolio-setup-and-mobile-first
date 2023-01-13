@@ -93,15 +93,15 @@ Clone this repository to your desired folder.
 
 ### Install
 
--
+This project do not need Installation.
 
 ### Run tests 
 
-Tests have not applied yet
+Tests have not applied yet.
 
 ### Deployment
 
-The project has not been deployed yet
+The project has not been deployed yet.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
