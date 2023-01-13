@@ -5,13 +5,12 @@
   font-family: 'Poppins', sans-serif;
   list-style: none;
 }
-
+/* Headline Section */
 @media only screen and (max-width: 600px) {
   header {
     width: 100%;
     left: 0;
     top: 0;
-    background: #fff;
   }
 
   .navbar {
@@ -79,7 +78,6 @@
   .headline {
     max-width: 100vw;
     min-height: 100vh;
-    background: #fff;
     border-bottom-left-radius: 5rem;
     margin-bottom: 10em;
     padding: 2rem;
@@ -111,7 +109,7 @@
   }
 
   .media {
-    padding: 10px;
+    margin-right: 19px;
   }
 
   .media img {
@@ -130,6 +128,8 @@
     padding: 10px 0 15px;
     background-color: transparent;
     border: none;
+    margin-top: 10px;
+    margin-bottom: 12px;
   }
 
   .button:hover {
@@ -150,7 +150,7 @@
 
 .works-container {
   display: grid;
-  grid-gap: 1.25rem;
+  grid-gap: 5rem;
 }
 
 .works-card {
@@ -163,20 +163,16 @@
   padding: 16px;
   gap: 12px;
   margin: 20px;
-  background: #FFFFFF;
   border: 1px solid #DFE1E6;
   border-radius: 16px;
-  max-width: 327px;
+  width: 327px;
   height: 100%;
-
-
 }
 
 .works-card img {
   width: 295px;
   height: 220px;
   border-radius: 8px;
-
 }
 
 .info-block {
@@ -196,7 +192,8 @@
   padding: 0px;
   gap: 12px;
   width: 295px;
-  height: 80px;
+  height: 40px;
+  
 }
 
 .top h2 {
@@ -219,6 +216,7 @@
   gap: 12px;
   width: 300px;
   height: 32px;
+  padding-bottom: 10px;
 }
 
 #client {
@@ -263,7 +261,7 @@
 }
 
 .info-block p {
-  margin-top: 10%;
+  margin-top: 70px;
   width: 295px;
   height: 76px;
   font-weight: 400;
@@ -284,7 +282,7 @@
   flex: none;
   order: 2;
   flex-grow: 0;
-  margin-top: 20px;
+  margin-top: 5%;
 }
 
 .tags li {
@@ -298,17 +296,20 @@
   color: #6070FF;
 }
 
+.bottom {
+  margin-top: 0px;
+}
+
 .action {
   justify-content: center;
   font-size: 17px;
   width: 124px;
   height: 48px;
   left: 0px;
-  margin-top: 5vh;
+  margin-top: 15%;
   border-radius: 8px;
   border: 1px solid #6070FF;
   color: #6070FF;
-  background-color: #fff;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
@@ -335,5 +336,166 @@
   height: 80px;
   text-align: left;
 }
+
+/* About Me Section */
+
+.aboutme {
+  max-width: 100vw;
+  min-height: 100vh;
+  border-top-right-radius: 5rem;
+  margin-bottom: 10em;
+  padding: 2rem;
+  background-image: url('images/header-background-mobile@2x.png');
+  background-size: 100vw;
+  background-repeat: no-repeat;
 }
 
+.action2 {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  gap: 10px;
+  width: 162px;
+  height: 48px;
+  border: 1px solid #6070FF;
+  border-radius: 8px;
+  margin-top: 20px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 24px;
+  letter-spacing: 0.03em;
+  color: #396DF2;
+}
+
+.action2:hover {
+  background-color: #6070FF;
+  color: #fff;
+}
+
+.action2:active {
+  background-color: #2230D2;
+}
+
+/* Skills Section */
+
+.skills {
+  align-items: center;
+  margin-top: 8vh;
+  width: 327px;
+}
+
+.btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#sign {
+  margin-left: 206px;
+}
+
+.btn h3 {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  color: #000000;
+}
+
+.arrow {
+  display: flex;
+  flex-direction: row;
+  width: 10px;
+  height: 13px;
+}
+
+/* Span Section */
+
+.slide img {
+  display: flex;
+  width: 48px;
+  height: 48px;
+  left: 12px;
+}
+
+.slide li {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  flex-direction: row;
+  width: 303px;
+  height: 66.72px;
+  list-style-type: none;
+  background: #F7F7F9;
+  border-radius: 8px;
+  margin: 8px 0px;
+
+}
+
+li h4 {
+  position: relative;
+  height: 24px;
+  left: 24px;
+  right: 12px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  color: #253858;
+}
+
+.arrow {
+  -webkit-transition-duration: 0.1s;
+  -moz-transition-duration: 0.1s;
+  -o-transition-duration: 0.1s;
+   transition-duration: 0.1s;
+  -webkit-transition-property: -webkit-transform;
+  -moz-transition-property: -moz-transform;
+  -o-transition-property: -o-transform;
+   transition-property: transform;
+}
+
+.arrow:active {
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+   transform: rotate(90deg);
+}
+
+
+
+.slide {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  height: 0px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  clear: both;
+  overflow: hidden;
+  transition: height .4s ease;
+}
+
+.slide li {
+  padding : 30px;
+}
+
+#touch {
+  position: absolute;
+  opacity: 0; 
+  height: 0px;
+}    
+
+#touch:checked + .slide {
+  height: 350px;
+} 
+
+}
