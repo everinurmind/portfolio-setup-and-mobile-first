@@ -6,12 +6,14 @@
   list-style: none;
 }
 
+/* Headline Section */
+
 @media only screen and (max-width: 600px) {
   header {
     width: 100%;
     left: 0;
     top: 0;
-    background: #fff;
+    height: 50px;
   }
 
   .navbar {
@@ -79,16 +81,15 @@
   .headline {
     max-width: 100vw;
     min-height: 100vh;
-    background: #fff;
-    border-bottom-left-radius: 2rem;
-    margin-bottom: 10em;
+    border-bottom-left-radius: 5rem;
+    margin-bottom: 50px;
     padding: 2rem;
     background-image: url('images/header-shapes mobile@2x.png');
     background-size: 100vw;
     background-repeat: no-repeat;
   }
 
-  h1 {
+  .text h1 {
     margin-top: 5rem;
     color: #344563;
     font-size: 2.5rem;
@@ -96,7 +97,7 @@
     font-weight: 700;
   }
 
-  p {
+  .text p {
     margin-top: 20px;
     font-size: 1.25rem;
     line-height: 1.75rem;
@@ -114,7 +115,7 @@
     margin-right: 19px;
   }
 
-    .media img {
+  .media img {
     justify-content: space-between;
     width: 1.5rem;
     height: 1.25rem;
@@ -138,4 +139,3 @@
     cursor: pointer;
     text-decoration: underline;
   }
-}
