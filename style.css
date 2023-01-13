@@ -115,7 +115,7 @@
 
   .media img {
     justify-content: space-between;
-    width: 1.5rem;
+    width: 1.50rem;
     height: 1.25rem;
   }
 
@@ -311,6 +311,7 @@
   border-radius: 8px;
   border: 1px solid #6070FF;
   color: #6070FF;
+  background-color: #fff;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
@@ -358,11 +359,12 @@
   justify-content: center;
   padding: 12px;
   gap: 10px;
-  width: 162px;
+  width: 168px;
   height: 48px;
   border: 1px solid #6070FF;
   border-radius: 8px;
   margin-top: 20px;
+  margin-bottom: 60px;
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 500;
@@ -370,6 +372,7 @@
   line-height: 24px;
   letter-spacing: 0.03em;
   color: #396DF2;
+  background-color: #fff;
 }
 
 .action2:hover {
@@ -383,45 +386,138 @@
 
 /* Skills Section */
 
-.skills {
-  align-items: center;
-  margin-top: 8vh;
-  width: 327px;
-}
-
-.btn {
+.languages {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  width: 327px;
+  height: 320.15px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+#separation {
+  height: 1px;
+  margin-bottom: 24px;
+  background: #DFE1E6;
   align-items: center;
+  justify-content: center;
 }
 
-#sign {
-  margin-left: 206px;
+.frameworks {
+  display: flex;
+  flex-direction: column;
+  margin-top: 36px;
 }
 
-.btn h3 {
+.skills {
+  display: flex;
+  flex-direction: column;
+  padding-top: 24px;
+}
+
+#intro {
+  display: flex;
+  width: 327px;
+  height: 72px;
+}
+
+#intro2 {
+  display: flex;
+  width: 327px;
+  height: 72px
+}
+
+#intro3 {
+  display: flex;
+  width: 327px;
+  height: 72px
+}
+
+#intro h3 {
+  height: 24px;
   font-weight: 500;
   font-size: 20px;
   line-height: 24px;
   display: flex;
   align-items: center;
   color: #000000;
+  margin-right: 136px;
+}
+
+#intro2 h3 {
+  height: 24px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  color: #000000;
+  margin-right: 141px;
+}
+
+#intro3 h3 {
+  height: 24px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  color: #000000;
+  margin-right: 217px;
 }
 
 .arrow {
   display: flex;
   flex-direction: row;
-  width: 10px;
-  height: 13px;
+  align-items: flex-start;
+  padding: 8px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background-color: #fff;
 }
 
-/* Span Section */
+.arrow2 {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background-color: #fff;
+}
+
+#intro img {
+  width: 14px;
+  height: 8px;
+}
+
+#intro2 img {
+  width: 8px;
+  height: 14px;
+}
+
+#intro3 img {
+  width: 8px;
+  height: 14px;
+}
+
+/* Slide Section */
+
+.slide {
+  margin-top: 36px;
+  margin-bottom: 36px;
+}
 
 .slide img {
-  display: flex;
   width: 48px;
   height: 48px;
   left: 12px;
+  margin-left: 12px;
+  margin-right: 16px;
 }
 
 .slide li {
@@ -434,15 +530,15 @@
   list-style-type: none;
   background: #F7F7F9;
   border-radius: 8px;
-  margin: 8px 0px;
+  margin: 12px 0px;
 
 }
 
-li h4 {
-  position: relative;
+li h3 {
   height: 24px;
-  left: 24px;
+  left: 76px;
   right: 12px;
+  top: calc(50% - 24px/2 - 0.36px);
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 500;
@@ -452,51 +548,5 @@ li h4 {
   align-items: center;
   color: #253858;
 }
-
-.arrow {
-  -webkit-transition-duration: 0.1s;
-  -moz-transition-duration: 0.1s;
-  -o-transition-duration: 0.1s;
-   transition-duration: 0.1s;
-  -webkit-transition-property: -webkit-transform;
-  -moz-transition-property: -moz-transform;
-  -o-transition-property: -o-transform;
-   transition-property: transform;
-}
-
-.arrow:active {
-  -webkit-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-   transform: rotate(90deg);
-}
-
-
-
-.slide {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  height: 0px;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-  clear: both;
-  overflow: hidden;
-  transition: height .4s ease;
-}
-
-.slide li {
-  padding : 30px;
-}
-
-#touch {
-  position: absolute;
-  opacity: 0; 
-  height: 0px;
-}    
-
-#touch:checked + .slide {
-  height: 350px;
-} 
 
 }
