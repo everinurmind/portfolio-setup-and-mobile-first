@@ -427,22 +427,24 @@
 
   #separation {
     height: 1px;
-    margin-bottom: 24px;
     background: #dfe1e6;
     align-items: center;
     justify-content: center;
+    
   }
 
   .frameworks {
     display: flex;
     flex-direction: column;
-    margin-top: 36px;
+    margin-top: 24px;
+    margin-bottom: 24px;
   }
 
   .skills {
     display: flex;
     flex-direction: column;
-    padding-top: 24px;
+    margin-top: 24px;
+    margin-bottom: 24px;
   }
 
   .arrow {
@@ -514,12 +516,14 @@
     display: flex;
     width: 327px;
     height: 72px;
+    margin-top: 24px;
   }
 
   #intro3 {
     display: flex;
     width: 327px;
     height: 72px;
+    margin-bottom: 24px;
   }
 
   #intro h3 {
@@ -542,6 +546,7 @@
     align-items: center;
     color: #000;
     margin-right: 141px;
+    margin-top: 24px;
   }
 
   #intro3 h3 {
@@ -553,6 +558,7 @@
     align-items: center;
     color: #000;
     margin-right: 217px;
+    margin-top: 24px;
   }
 
   #intro img {
@@ -563,10 +569,12 @@
   #intro2 img {
     width: 8px;
     height: 14px;
+    margin-top: 24px;
   }
 
   #intro3 img {
     width: 8px;
     height: 14px;
+    margin-top: 24px;
   }
 }
