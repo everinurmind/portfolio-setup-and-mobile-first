@@ -342,6 +342,14 @@
 
   /* About Me Section */
 
+  .text h2 {
+    margin-top: 5rem;
+    color: #344563;
+    font-size: 2.5rem;
+    text-align: left;
+    font-weight: 700;
+  }
+
   .aboutme {
     max-width: 100vw;
     min-height: 100vh;
