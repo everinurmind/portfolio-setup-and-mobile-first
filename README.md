@@ -39,7 +39,7 @@
 
 # 📖 Personal Portfolio <a name="about-project"></a>
 
-Hello! Here you will see my first personal portfolio web-page.
+Hello! Here you will see my first personal portfolio Web-Page.
 
 ## 🛠 Built With HTML & CSS <a name="built-with"></a>
 
@@ -48,7 +48,7 @@ Hello! Here you will see my first personal portfolio web-page.
 <details>
   <summary>Client</summary>
   <ul>
-    <li><a href="https://github.com/">GitHub Desktop</a></li>
+    <li><a href="https://code.visualstudio.com/">Visual Studio Code</a></li>
   </ul>
 </details>
 
@@ -70,6 +70,8 @@ Hello! Here you will see my first personal portfolio web-page.
 
 - [production of main page] **[Main page of Personal Portfolio]**
 - [creating responsive page for portfolio] **[Mobile First Integration]**
+- [adding portfolio's works page] **[Works Page of Personal Portfolio]**
+- [adding about me section] **[About Me Page of Personal Portfolio]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
