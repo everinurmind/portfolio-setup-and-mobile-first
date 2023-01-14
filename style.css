@@ -89,7 +89,7 @@
     background-repeat: no-repeat;
   }
 
-  .text h1 {
+ .text h1 {
     width: 327px;
     height: 101px;
     font-weight: 700;
@@ -112,6 +112,22 @@
     flex: none;
     order: 1;
     flex-grow: 0;
+  }
+
+  .media-links {
+    display: flex;
+    justify-items: flex-start;
+    align-items: center;
+  }
+
+  .media {
+    margin-right: 19px;
+  }
+
+  .media img {
+    justify-content: space-between;
+    width: 1.5rem;
+    height: 1.25rem;
   }
 
   .media-links {
