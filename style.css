@@ -81,7 +81,7 @@
   .headline {
     max-width: 100vw;
     min-height: 100vh;
-    border-bottom-left-radius: 8rem;
+    border-bottom-left-radius: 5.5rem;
     margin-bottom: 50px;
     padding: 2rem;
     background: url('images/header-shapes mobile@2x.png') no-repeat, #FFFFFF;
@@ -567,43 +567,47 @@
 .contact {
   max-width: 100vw;
   min-height: 100vh;
-  border-top-left-radius: 8rem;
+  border-top-left-radius: 5.5rem;
   margin-bottom: 50px;
   padding: 2rem;
-  background: url('images/header-shapes mobile@2x.png') no-repeat, #6070FF;
+  background: url('images/contact form shapes-mobile@2x.png') no-repeat, #6070FF;
   background-size: 100vw;
 
 }
 
 .end-text h1 {
-  height: 101px;
+  height: 56px;
   font-weight: 700;
   font-size: 40px;
   line-height: 52px;
-  display: flex;
-  align-items: center;
   color: #FFFFFF;
-  margin-top: 75px;
-  margin-bottom: 50px;
+  margin-top: 103px;
+  margin-bottom: 12px;
+  margin-left: 24px;
+  margin-right: 24px;
   text-align: center;
 }
 
 .end-text p {
-  height: 144px;
+  height: 102px;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 24px;
   color: #EBEBFF;
   flex: none;
   order: 1;
   flex-grow: 0;
   text-align: center;
+  margin-bottom: 87px;
+  margin-left: 24px;
+  margin-right: 24px;
 }
 
 
 #contact-form {
   margin-top: 87px;
   margin-left: 24px;
+  margin-right: 24px;
 }
 
 #name {
@@ -629,6 +633,10 @@
   height: 170px;
 }
 
+#msg::placeholder {
+  padding-top: 15px;
+}
+
 ::placeholder {
   color: #B3BAC5;;
   font-weight: 400;
@@ -647,14 +655,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px;
   gap: 10px;
-  width: 168px;
+  width: 142px;
   height: 48px;
   border: 1px solid #6070ff;
   border-radius: 8px;
-  margin-top: 20px;
-  margin-bottom: 60px;
+  margin-top: 34px;
+  margin-bottom: 32px;
+  margin-right: 209px;
   font-size: 17px;
   line-height: 24px;
   letter-spacing: 0.03em;
@@ -665,11 +673,23 @@
 .action-btn:hover {
   box-shadow: 0 8px 16px rgba(64, 83, 252, 0.24);
   border-radius: 8px;
-  color: #396df2;
+  color: #ffffff;
+  background-color: #2230d2;
 }
 
 .action-btn:active {
   background-color: #2230d2;
+}
+
+#shape {
+  margin-left: 120px;
+  margin-top: 32px;
+  margin-bottom: 8px;
+  width: 134px;
+  height: 5px;
+  bottom: 8px;
+  background: #0D151E;
+  border-radius: 10px;
 }
 
 }
