@@ -609,6 +609,8 @@
     width: 327px;
     height: 48px;
     margin-bottom: 20px;
+    padding: 15px;
+    text-transform: capitalize;
   }
 
   #email {
@@ -617,6 +619,8 @@
     width: 327px;
     height: 48px;
     margin-bottom: 20px;
+    padding: 15px;
+    text-transform: capitalize;
   }
 
   #msg {
@@ -624,23 +628,16 @@
     border-radius: 8px;
     width: 327px;
     height: 170px;
-  }
-
-  #msg::placeholder {
-    padding-top: 15px;
+    padding: 15px;
+    text-transform: capitalize;
   }
 
   ::placeholder {
     color: #b3bac5;
     font-weight: 400;
     font-size: 15px;
-    line-height: 24px;
     height: 18px;
-  }
-
-  ::-ms-input-placeholder {
-    color: #1b4d17;
-    font-size: 17px;
+    text-align: left;
   }
 
   .action-btn {
