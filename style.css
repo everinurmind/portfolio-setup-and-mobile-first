@@ -560,11 +560,9 @@
   /* Contact Section */
 
   .contact {
-    position: static;
     max-width: 100vw;
     min-height: 100vh;
     border-top-left-radius: 5.5rem;
-    margin-bottom: 50px;
     padding: 2rem;
     background: url('images/contact form shapes-mobile@2x.png') no-repeat, #6070ff;
     background-size: 100vw;
