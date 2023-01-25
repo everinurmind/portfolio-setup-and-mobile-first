@@ -560,6 +560,7 @@
   /* Contact Section */
 
   .contact {
+    position: static;
     max-width: 100vw;
     min-height: 100vh;
     border-top-left-radius: 5.5rem;
@@ -567,6 +568,17 @@
     padding: 2rem;
     background: url('images/contact form shapes-mobile@2x.png') no-repeat, #6070ff;
     background-size: 100vw;
+  }
+
+  #contact-form {
+    margin-top: 87px;
+    margin-left: 24px;
+    margin-right: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+
   }
 
   .end-text h2 {
@@ -595,13 +607,6 @@
     margin-bottom: 87px;
     margin-left: 24px;
     margin-right: 24px;
-  }
-
-  #contact-form {
-    margin-top: 87px;
-    margin-left: 24px;
-    margin-right: 24px;
-    
   }
 
   #name {
