@@ -576,7 +576,6 @@
     flex-direction: column;
     align-items: center;
     box-sizing: border-box;
-
   }
 
   .end-text h2 {
@@ -620,7 +619,7 @@
     line-height: 20px;
     display: flex;
     align-items: center;
-    color: #172B4D;
+    color: #172b4d;
   }
 
   #email {
@@ -636,7 +635,7 @@
     line-height: 20px;
     display: flex;
     align-items: center;
-    color: #172B4D;
+    color: #172b4d;
   }
 
   #msg {
@@ -651,7 +650,7 @@
     line-height: 20px;
     display: flex;
     align-items: center;
-    color: #172B4D;
+    color: #172b4d;
   }
 
   ::placeholder {
