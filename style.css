@@ -562,13 +562,12 @@
     background: url('images/contact form shapes-mobile@2x.png') no-repeat, #6070ff;
     background-size: cover;
     overflow: hidden;
-    }
+  }
 
   #contact-form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
   }
 
   .end-text h2 {
