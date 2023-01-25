@@ -556,18 +556,20 @@
   /* Contact Section */
 
   .contact {
-    position: static;
     border-top-left-radius: 5.5rem;
     padding: 2rem;
     background: url('images/contact form shapes-mobile@2x.png') no-repeat, #6070ff;
     background-size: cover;
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
   }
 
   #contact-form {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    float: left;
+    width: 100%;
   }
 
   .end-text h2 {
@@ -599,6 +601,8 @@
   }
 
   #name {
+    float: left;
+    width: 100%;
     border: 1px solid #cfd8dc;
     border-radius: 8px;
     min-width: 327px;
@@ -612,6 +616,8 @@
   }
 
   #email {
+    float: left;
+    width: 100%;
     border: 1px solid #cfd8dc;
     border-radius: 8px;
     min-width: 327px;
@@ -625,6 +631,8 @@
   }
 
   #msg {
+    float: left;
+    width: 100%;
     border: 1px solid #cfd8dc;
     border-radius: 8px;
     min-width: 327px;
@@ -655,7 +663,6 @@
     margin-top: 34px;
     margin-bottom: 32px;
     margin-right: 209px;
-    margin-left: 24px;
     font-size: 17px;
     line-height: 24px;
     letter-spacing: 0.03em;
