@@ -354,7 +354,7 @@
 
   /* About Me Section */
 
-  .text h2 {
+  .abt-text h2 {
     height: 101px;
     font-weight: 700;
     font-size: 40px;
@@ -415,9 +415,6 @@
     align-items: flex-start;
     padding: 0;
     height: 320.15px;
-    flex: none;
-    order: 0;
-    flex-grow: 0;
   }
 
   #separation {
@@ -1043,7 +1040,7 @@
 
   /* About Me Section */
 
-  .text h2 {
+  .abt-text h2 {
     font-weight: 700;
     font-size: 40px;
     line-height: 52px;
@@ -1053,21 +1050,30 @@
     margin-bottom: 20px;
   }
 
+  .abt-text p {
+    width: 447px;
+    height: 102px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #344563;
+
+  }
+
   .aboutme {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     border-top-right-radius: 5rem;
-    margin-bottom: 10em;
-    padding: 2rem;
+    margin: 142px 50px 142px 142px;
     background-image: url('images/header-background-mobile@2x.png');
-    background-size: 100vw;
+    background-size: cover;
     background-repeat: no-repeat;
   }
 
   .action2 {
     box-sizing: border-box;
     display: flex;
-    align-items: center;
+    align-items: left;
     justify-content: center;
     padding: 12px;
     gap: 10px;
@@ -1095,17 +1101,48 @@
     background-color: #2230d2;
   }
 
+  #abt-btn {
+    color: #7f8cff;
+    text-transform: uppercase;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 10px 0 15px;
+    background-color: transparent;
+    border: none;
+    margin-top: 10px;
+    margin-bottom: 12px;
+  }
+
+  #abt-btn:hover {
+    cursor: pointer;
+    text-decoration: underline;   
+  }
+
+  #abt-links {
+    display: flex;
+    justify-items: flex-start;
+    align-items: center;
+    padding: 0;
+    margin-bottom: 34px;
+  }
+
+  #block1 {
+    margin-right: 25px;
+  }
+
   /* Skills Section */
+
+  #block2 {
+    margin-left: 37px;
+  }
 
   .languages {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 0;
-    height: 320.15px;
-    flex: none;
-    order: 0;
-    flex-grow: 0;
+    margin: 0 0 36px 12px;
   }
 
   #separation {
@@ -1118,15 +1155,13 @@
   .frameworks {
     display: flex;
     flex-direction: column;
-    margin-top: 24px;
-    margin-bottom: 24px;
+    align-items: flex-start;
   }
 
   .skills {
     display: flex;
     flex-direction: column;
-    margin-top: 24px;
-    margin-bottom: 24px;
+    align-items: flex-start;
   }
 
   .arrow {
@@ -1148,96 +1183,80 @@
     height: 40px;
     border: none;
     background-color: #fff;
+    margin-left: 15px;
   }
 
   .slide {
-    margin-top: 36px;
-    margin-bottom: 36px;
+    display: flex;
+    flex-direction: row;
   }
 
   .slide img {
     width: 48px;
     height: 48px;
-    left: 12px;
-    margin-left: 12px;
-    margin-right: 16px;
+    margin: 12px 0 0 12px;
   }
 
   .slide li {
     display: flex;
-    align-items: center;
-    justify-content: left;
-    flex-direction: row;
-    width: 303px;
-    height: 66.72px;
+    flex-direction: column;
+    margin-right: 12px;
     list-style-type: none;
     background: #f7f7f9;
     border-radius: 8px;
-    margin: 12px 0;
+    width: 122px;
+    height: 120px;
   }
 
   li h3 {
-    height: 24px;
-    left: 76px;
-    right: 12px;
     font-weight: 500;
     font-size: 15px;
     line-height: 20px;
-    display: flex;
-    align-items: center;
+    align-items: left;
     color: #253858;
+    margin: 16px 0 0 12px;
   }
 
   #intro {
     display: flex;
-    height: 72px;
   }
 
   #intro2 {
     display: flex;
-    height: 72px;
-    margin-top: 24px;
   }
 
   #intro3 {
     display: flex;
-    height: 72px;
-    margin-bottom: 24px;
   }
 
   #intro h3 {
-    height: 24px;
+    width: 582px;
     font-weight: 500;
     font-size: 20px;
     line-height: 24px;
-    display: flex;
-    align-items: center;
     color: #000;
-    margin-right: 136px;
   }
 
   #intro2 h3 {
-    height: 24px;
+    width: 582px;
     font-weight: 500;
     font-size: 20px;
     line-height: 24px;
     display: flex;
     align-items: center;
     color: #000;
-    margin-right: 141px;
-    margin-top: 24px;
+    margin: 0 0 24px 12px;
   }
 
   #intro3 h3 {
-    height: 24px;
+    width: 582px;
     font-weight: 500;
     font-size: 20px;
     line-height: 24px;
     display: flex;
     align-items: center;
     color: #000;
-    margin-right: 217px;
-    margin-top: 24px;
+    margin: 24px 0 24px 12px;
   }
 
   #intro img {
@@ -1248,7 +1267,6 @@
   #intro2 img {
     width: 8px;
     height: 14px;
-    margin-top: 24px;
   }
 
   #intro3 img {
@@ -1262,18 +1280,25 @@
   #contact {
     border-top-left-radius: 5.5rem;
     padding: 2rem;
-    background: url('images/contact form shapes-mobile@2x.png') no-repeat, #6070ff;
-    background-size: cover;
+    background: url('images/contact form background shapes@2x.png') no-repeat, #6070ff;
+    background-size: contain;
     display: flex;
     flex-direction: column;
+    justify-content: center;
   }
 
   #contact-form {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    float: left;
-    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .end-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   .end-text h2 {
@@ -1282,26 +1307,18 @@
     font-size: 40px;
     line-height: 52px;
     color: #fff;
-    margin-top: 103px;
-    margin-bottom: 20px;
-    margin-left: 24px;
-    margin-right: 24px;
+    margin: 142px 320px 12px;
     text-align: center;
   }
 
   .end-text p {
+    width: 569px;
     height: 102px;
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
     color: #ebebff;
-    flex: none;
-    order: 1;
-    flex-grow: 0;
     text-align: center;
-    margin-bottom: 87px;
-    margin-left: 24px;
-    margin-right: 24px;
   }
 
   #name {
@@ -1309,9 +1326,9 @@
     width: 100%;
     border: 1px solid #cfd8dc;
     border-radius: 8px;
-    min-width: 327px;
+    width: 447px;
     height: 48px;
-    margin-bottom: 20px;
+    margin-bottom: 27px;
     padding: 15px;
     text-transform: capitalize;
     font-weight: 400;
@@ -1324,9 +1341,9 @@
     width: 100%;
     border: 1px solid #cfd8dc;
     border-radius: 8px;
-    min-width: 327px;
+    width: 447px;
     height: 48px;
-    margin-bottom: 20px;
+    margin-bottom: 27px;
     padding: 15px;
     text-transform: capitalize;
     font-weight: 400;
@@ -1339,7 +1356,7 @@
     width: 100%;
     border: 1px solid #cfd8dc;
     border-radius: 8px;
-    min-width: 327px;
+    width: 447px;
     height: 170px;
     padding: 15px;
     text-transform: capitalize;
@@ -1364,9 +1381,8 @@
     height: 48px;
     border: 1px solid #6070ff;
     border-radius: 8px;
-    margin-top: 34px;
-    margin-bottom: 32px;
-    margin-right: 209px;
+    margin-top: 27px;
+    margin-bottom: 100px;
     font-size: 17px;
     line-height: 24px;
     letter-spacing: 0.03em;
