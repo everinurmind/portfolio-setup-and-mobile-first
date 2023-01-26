@@ -714,9 +714,14 @@
     display: none;
   }
 
+ body {
+  background-color: #E5E5E5;
+ }
+
   header {
     width: 100%;
-    height: 50px;
+    height: 122px;
+    background-color: #fff;
   }
 
   .navbar {
@@ -769,11 +774,10 @@
 
   .headline {
     border-bottom-left-radius: 5.5rem;
-    margin-top: 72px;
     margin-bottom: 102px;
     padding: 2rem;
     background: url('images/Header bg@2x.png') no-repeat, #fff;
-    background-size: contain;
+    background-size: cover;
   }
 
   .text h1 {
@@ -783,7 +787,7 @@
     display: flex;
     align-items: center;
     color: #172b4d;
-    margin-top: 287px;
+    margin-top: 247px;
     margin-bottom: 12px;
     padding: 0 260px;
   }
@@ -1034,6 +1038,8 @@
     align-items: center;
     color: #172b4d;
     margin-bottom: 20px;
+    margin-left: 142px;
+    margin-top: 142px;
   }
 
   .abt-text p {
@@ -1043,14 +1049,16 @@
     font-size: 16px;
     line-height: 24px;
     color: #344563;
+    margin-left: 142px;
   }
 
   #aboutme {
     display: flex;
     flex-direction: row;
     border-top-right-radius: 5rem;
-    margin: 142px 50px 142px 142px;
+    margin: 142px 0 0 0;
     background-image: url('images/header-background-mobile@2x.png');
+    background-color: #E5E5E5;
     background-size: cover;
     background-repeat: no-repeat;
   }
@@ -1068,6 +1076,7 @@
     border-radius: 8px;
     margin-top: 20px;
     margin-bottom: 60px;
+    margin-left: 142px;
     font-size: 17px;
     line-height: 24px;
     letter-spacing: 0.03em;
@@ -1098,6 +1107,7 @@
     border: none;
     margin-top: 10px;
     margin-bottom: 12px;
+    margin-left: 142px;
   }
 
   #abt-btn:hover {
@@ -1111,6 +1121,7 @@
     align-items: center;
     padding: 0;
     margin-bottom: 34px;
+    margin-left: 142px;
   }
 
   #block1 {
@@ -1127,7 +1138,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin: 0 0 36px 12px;
+    margin: 166px 0 36px 12px;
   }
 
   #separation {
