@@ -15,6 +15,8 @@
 
 <body>
 
+<!-- ─── Desktop Header ─── -->
+
 <!-- ─── Header ─── -->
 
 <header class="header">    
@@ -22,20 +24,24 @@
         <div class="logo">
             <a href="#">My Logo</a>
         </div>
+        <ul>
+            <li><a class="navigation" href="#works">Portfolio</a></li>
+            <li><a class="navigation" href="#aboutme">About</a></li>
+            <li><a class="navigation" href="#contact">Contact</a></li>
+        </ul>
         <div class="hamburger">
             <div class="bar top"></div>
             <div class="bar middle"></div>
             <div class="bar bottom"></div>
           </div>
-            </button>
-              </nav>
-    </header>
+    </nav>
+</header>
 
 <!-- ─── Headline ─── -->
 
         <section class="headline">
             <div class="text">
-                <h1>I’m Nurbol<br>Glad to see<br>you!</h1>
+                <h1>I’m Nurbol<br>Glad to see you!</h1>
                 <p>I’m a software developer! I can help you build a product , feature or website Look through some of my work and experience! If you like what you see and have a project you need coded, don’t hestiate to contact me.</p>
             </div>
 
@@ -58,13 +64,13 @@
 
 <!-- ─── Works Section ─── -->
 
-    <section class="works">
+    <section id="works">
         <div class="works-container">
 
 <!--1 work card-->            
 
             <div class="works-card">
-                    <img src="worksimg/Snapshoot Portfolio@2x.png">
+                <img src="worksimg/Snapshoot Portfolio@2x.png">
                     <div class="info-block">
                         <div class="top">
                             <h2 id="six">Tonic</h2>
@@ -88,11 +94,11 @@
 
 <!--2 work card-->   
 
-            <div class="works-card">
+            <div class="works-card2">
                 <img src="worksimg\Snapshoot Portfolio@2x (1).png">
                 <div class="info-block">
                     <div class="top">
-                        <h2 id="eight">Multi-Post<br>Stories</h2>
+                        <h2 id="eight">Multi-Post Stories</h2>
                         <ul class="frame">
                             <li id="client">CANOPY</li>
                             <li id="dot"> </li>
@@ -138,11 +144,11 @@
 
 <!--4 work card-->
 
-    <div class="works-card">
+    <div class="works-card2">
         <img src="worksimg/Snapshoot Portfolio@2x (3).png">
         <div class="info-block">
             <div class="top">
-            <h2 id="eight">Multi-Post<br>Stories</h2>
+            <h2 id="eight">Multi-Post Stories</h2>
             <ul class="frame">
                 <li id="client">CANOPY</li>
                 <li id="dot"> </li>
@@ -165,14 +171,15 @@
 
 <!-- ─── About Me Section ─── -->    
 
-    <section class="aboutme">
-        <div class="text">
+    <section id="aboutme">
+        <div id="block1">
+        <div class="abt-text">
             <h2>About<br>Myself</h2>
             <p>Hello I’m a software developer! I can help you build a product , feature or website Look through some of my work and experience! If you like what you see and have a project you need coded, don’t hestiate to contact me.</p>
         </div>
         <div class=links>
-            <button type="button" class="button">LET’S CONNECT</button>
-            <ul class="media-links">
+            <button type="button" class="button" id="abt-btn">LET’S CONNECT</button>
+            <ul class="media-links" id="abt-links">
                 <li class="media"><a href="https://twitter.com/everinurmind/"><img src="images\Twitter@2x.png" alt="twitter logo"></a></li>
                 
                 <li class="media"><a href="https://www.linkedin.com/in/everinurmind/"><img src="images\Linkedin@2x.png" alt="linked-in logo"></a></li>
@@ -186,7 +193,9 @@
             </ul>
             <button class="action2">Get my resume</button>
         </div>
-        <div class="languages">
+        </div>
+        <div id="block2">
+        <div class="languages" id="dt-lang">
                 <div id="intro">
                     <h3>Languages</h3>
                     <button class="arrow"><img src="images\Union@2x.png"></button>
@@ -218,13 +227,14 @@
                 <h3>Skills</h3>
                 <button class="arrow2"><img src="images\Union@2x(1).png"></button>
         </div>
-        <div id="separation"><img scr="images\Separator Bottom@2x.png"></div>
     </div>
+        <div id="separation"><img scr="images\Separator Bottom@2x.png"></div>
+        </div>
     </section>
 
 <!-- ─── Contact Me Section ─── -->    
 
-<section class="contact">
+<section id="contact">
     <div class="end-text">
         <h2>Contact me</h2>
         <p>If you have an application you are interested in developing, a feature that you need built or a project that needs coding. I’d love to help with it</p>
