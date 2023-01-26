@@ -365,7 +365,7 @@
     margin-bottom: 20px;
   }
 
-  .aboutme {
+  #aboutme {
     display: flex;
     flex-direction: column;
     border-top-right-radius: 5rem;
@@ -1052,7 +1052,7 @@
     color: #344563;
   }
 
-  .aboutme {
+  #aboutme {
     display: flex;
     flex-direction: row;
     border-top-right-radius: 5rem;
