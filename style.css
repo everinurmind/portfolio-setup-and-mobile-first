@@ -714,9 +714,9 @@
     display: none;
   }
 
- body {
-  background-color: #E5E5E5;
- }
+  body {
+    background-color: #e5e5e5;
+  }
 
   header {
     width: 100%;
@@ -1058,7 +1058,7 @@
     border-top-right-radius: 5rem;
     margin: 142px 0 0 0;
     background-image: url('images/header-background-mobile@2x.png');
-    background-color: #E5E5E5;
+    background-color: #e5e5e5;
     background-size: cover;
     background-repeat: no-repeat;
   }
