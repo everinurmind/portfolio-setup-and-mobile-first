@@ -777,6 +777,21 @@
     margin-right: 55px;
   }
 
+  .navigation-menu {
+    animation-duration: 4.5s;
+    animation-name: slidein;
+  }
+
+  @keyframes slidein {
+    from {
+      margin-left: 100%;
+    }
+
+    to {
+      margin-left: 0%;
+    }
+  }
+
   .headline {
     border-bottom-left-radius: 5.5rem;
     margin-bottom: 102px;
