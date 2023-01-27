@@ -117,8 +117,13 @@
 
   .media img {
     justify-content: space-between;
-    width: 1.5rem;
-    height: 1.25rem;
+    width: 1.6rem;
+    height: 1.5rem;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .media img:hover {
+    transform: scale(1.3);
   }
 
   .button {
@@ -815,8 +820,13 @@
 
   .media img {
     justify-content: space-between;
-    width: 1.5rem;
-    height: 1.25rem;
+    width: 1.6rem;
+    height: 1.5rem;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .media img:hover {
+    transform: scale(1.5);
   }
 
   .button {
