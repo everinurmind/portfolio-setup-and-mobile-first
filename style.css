@@ -9,6 +9,11 @@
 /* Headline Section */
 
 @media only screen and (max-width: 768px) {
+  
+  body {
+    background-color: #e5e5e5;
+  }
+ 
   .navigation {
     display: none;
   }
@@ -16,6 +21,7 @@
   header {
     width: 100%;
     height: 50px;
+    background-color: #fff;
   }
 
   .navbar {
@@ -109,6 +115,7 @@
     display: flex;
     justify-items: flex-start;
     align-items: center;
+    margin-bottom: 50px;
   }
 
   .media {
@@ -168,6 +175,7 @@
     border: 1px solid #dfe1e6;
     border-radius: 16px;
     height: 100%;
+    background-color: #fff;
   }
 
   .works-card img {
@@ -186,6 +194,7 @@
     border: 1px solid #dfe1e6;
     border-radius: 16px;
     height: 100%;
+    background-color: #fff;
   }
 
   .works-card2 img {
@@ -370,11 +379,11 @@
     display: flex;
     flex-direction: column;
     border-top-right-radius: 5rem;
-    margin-bottom: 10em;
     padding: 2rem;
     background-image: url('images/header-background-mobile@2x.png');
     background-size: 100vw;
     background-repeat: no-repeat;
+    background-color: #fff;
   }
 
   .action2 {
@@ -423,6 +432,7 @@
     background: #dfe1e6;
     align-items: center;
     justify-content: center;
+    margin-bottom: 50px;
   }
 
   .frameworks {
