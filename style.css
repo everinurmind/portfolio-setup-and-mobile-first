@@ -9,11 +9,10 @@
 /* Headline Section */
 
 @media only screen and (max-width: 768px) {
-  
   body {
     background-color: #e5e5e5;
   }
- 
+
   .navigation {
     display: none;
   }
@@ -179,7 +178,7 @@
   }
 
   .works-card:hover {
-    box-shadow: 0px 0px 16px;
+    box-shadow: 0 0 16px;
     cursor: pointer;
   }
 
@@ -203,7 +202,7 @@
   }
 
   .works-card2:hover {
-    box-shadow: 0px 0px 16px;
+    box-shadow: 0 0 16px;
     cursor: pointer;
   }
 
@@ -914,7 +913,7 @@
   }
 
   .works-card:hover {
-    box-shadow: 0px 0px 16px;
+    box-shadow: 0 0 16px;
     cursor: pointer;
   }
 
@@ -939,7 +938,7 @@
   }
 
   .works-card2:hover {
-    box-shadow: 0px 0px 16px;
+    box-shadow: 0 0 16px;
     cursor: pointer;
   }
 
