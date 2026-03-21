@@ -2,301 +2,391 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nurbol Sultanov — Portfolio</title>
+
+    <!-- Шрифты -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Prism.js — подсветка синтаксиса -->
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
-    <title>Nurbol Sultanov</title>
 </head>
 
 <body>
 
-<!-- ─── Header ─── -->
+<!-- Курсор-свечение -->
+<div class="cursor-glow" id="cursorGlow"></div>
 
-<header class="header">
-    <nav class="navbar">
-        <div class="logo">
-            <a href="#">My Logo</a>
-        </div>
-        <ul class="navigation-menu">
-            <li><a class="navigation" href="#works">Portfolio</a></li>
-            <li><a class="navigation" href="#aboutme">About</a></li>
-            <li><a class="navigation" href="#contact">Contact</a></li>
+<!-- Анимированные блобы фона -->
+<div class="blobs" aria-hidden="true">
+    <div class="blob blob--1"></div>
+    <div class="blob blob--2"></div>
+    <div class="blob blob--3"></div>
+</div>
+
+<!-- ─── Шапка ─── -->
+<header class="header" id="header">
+    <nav class="nav container">
+        <a href="#" class="nav__logo">NS<span class="accent">.</span></a>
+
+        <ul class="nav__menu" id="navMenu">
+            <li><a href="#hero" class="nav__link active" data-section="hero">Home</a></li>
+            <li><a href="#projects" class="nav__link" data-section="projects">Projects</a></li>
+            <li><a href="#skills" class="nav__link" data-section="skills">Skills</a></li>
+            <li><a href="#code" class="nav__link" data-section="code">Code</a></li>
+            <li><a href="#about" class="nav__link" data-section="about">About</a></li>
+            <li><a href="#contact" class="nav__link" data-section="contact">Contact</a></li>
         </ul>
-        <!-- Кнопка гамбургер для мобильных.
-             aria-label описывает кнопку для скринридеров.
-             aria-expanded говорит открыто ли меню (управляется JS). -->
-        <button
-            class="hamburger"
-            type="button"
-            aria-label="Toggle navigation"
-            aria-expanded="false"
-        >
-            <span class="bar top"></span>
-            <span class="bar middle"></span>
-            <span class="bar bottom"></span>
+
+        <button class="hamburger" id="hamburger" type="button" aria-label="Toggle navigation" aria-expanded="false">
+            <span class="hamburger__bar"></span>
+            <span class="hamburger__bar"></span>
+            <span class="hamburger__bar"></span>
         </button>
     </nav>
 </header>
 
-<!-- ─── Headline ─── -->
-
-<section class="headline">
-    <div class="text">
-        <h1>I'm Nurbol<br>Glad to see you!</h1>
-        <p>I'm a software developer! I can help you build a product, feature or website.
-           Look through some of my work and experience! If you like what you see and have
-           a project you need coded, don't hesitate to contact me.</p>
-    </div>
-
-    <div class="links">
-        <button type="button" class="button">LET'S CONNECT</button>
-
-        <ul class="media-links">
-            <!-- Исправлено: обратный слэш \ заменён на / -->
-            <li class="media"><a href="https://twitter.com/everinurmind/"><img src="images/Twitter@2x.png" alt="Twitter profile"></a></li>
-            <li class="media"><a href="https://www.linkedin.com/in/everinurmind/"><img src="images/Linkedin@2x.png" alt="LinkedIn profile"></a></li>
-            <li class="media"><a href="https://medium.com/"><img src="images/Medium@2x.png" alt="Medium blog"></a></li>
-            <li class="media"><a href="https://github.com/everinurmind/"><img src="images/GitHub@2x.png" alt="GitHub profile"></a></li>
-            <li class="media"><a href="https://www.angellist.com/"><img src="images/AngelList@2x.png" alt="AngelList profile"></a></li>
-        </ul>
+<!-- ─── Герой ─── -->
+<section class="hero" id="hero">
+    <div class="hero__content container fade-in">
+        <p class="hero__greeting">Hello, I'm</p>
+        <h1 class="hero__name">Nurbol Sultanov</h1>
+        <p class="hero__role">
+            <span class="typewriter" id="typewriter"></span><span class="typewriter__cursor">|</span>
+        </p>
+        <p class="hero__desc">Turning raw data into actionable insights and building intelligent solutions.</p>
+        <div class="hero__buttons">
+            <a href="#projects" class="btn btn--primary">View Projects</a>
+            <a href="#contact" class="btn btn--outline">Get in Touch</a>
+        </div>
     </div>
 </section>
 
-<!-- ─── Works Section ─── -->
-
-<section id="works">
-    <div class="works-container">
-
-        <!-- Карточка 1 — fade-in: анимация появления при скролле (управляется JS) -->
-        <div class="works-card fade-in">
-            <img src="worksimg/Snapshoot Portfolio@2x.png" alt="Tonic project screenshot">
-            <div class="info-block">
-                <div class="top">
-                    <!-- Исправлено: id="six" → class="six" (дублированные ID запрещены в HTML) -->
-                    <h2 class="six">Tonic</h2>
-                    <ul class="frame">
-                        <!-- Исправлено: id="client/dot/role/year" → классы -->
-                        <li class="client">CANOPY</li>
-                        <li class="dot"></li>
-                        <li class="role">Back End Dev</li>
-                        <li class="dot"></li>
-                        <li class="year">2015</li>
-                    </ul>
-                </div>
-                <p>A daily selection of privately personalized reads; no accounts or sign-ups required.</p>
-                <div class="bottom">
-                    <ul class="tags">
-                        <li>html</li>
-                        <li>css</li>
-                        <li>javaScript</li>
-                    </ul>
-                    <button type="button" class="action">See Project</button>
-                </div>
-            </div>
+<!-- ─── Статистика ─── -->
+<section class="stats fade-in">
+    <div class="container stats__grid">
+        <div class="stats__card glass">
+            <span class="stats__number" data-target="5">0</span>
+            <span class="stats__suffix">+</span>
+            <p class="stats__label">Projects Completed</p>
         </div>
-
-        <!-- Карточка 2 -->
-        <div class="works-card2 fade-in">
-            <img src="worksimg/Snapshoot Portfolio@2x (1).png" alt="Multi-Post Stories project screenshot">
-            <div class="info-block">
-                <div class="top">
-                    <h2 class="eight">Multi-Post Stories</h2>
-                    <ul class="frame">
-                        <li class="client">CANOPY</li>
-                        <li class="dot"></li>
-                        <li class="role">Back End Dev</li>
-                        <li class="dot"></li>
-                        <li class="year">2015</li>
-                    </ul>
-                </div>
-                <p>A daily selection of privately personalized reads; no accounts or sign-ups required.</p>
-                <div class="bottom">
-                    <ul class="tags">
-                        <li>html</li>
-                        <li>css</li>
-                        <li>javaScript</li>
-                    </ul>
-                    <button type="button" class="action">See Project</button>
-                </div>
-            </div>
+        <div class="stats__card glass">
+            <span class="stats__number" data-target="20">0</span>
+            <span class="stats__suffix">+</span>
+            <p class="stats__label">Technologies Used</p>
         </div>
-
-        <!-- Карточка 3 -->
-        <div class="works-card fade-in">
-            <img src="worksimg/Snapshoot Portfolio@2x (2).png" alt="Tonic project screenshot">
-            <div class="info-block">
-                <div class="top">
-                    <h2 class="six">Tonic</h2>
-                    <ul class="frame">
-                        <li class="client">CANOPY</li>
-                        <li class="dot"></li>
-                        <li class="role">Back End Dev</li>
-                        <li class="dot"></li>
-                        <li class="year">2015</li>
-                    </ul>
-                </div>
-                <p>A daily selection of privately personalized reads; no accounts or sign-ups required.</p>
-                <div class="bottom">
-                    <ul class="tags">
-                        <li>html</li>
-                        <li>css</li>
-                        <li>javaScript</li>
-                    </ul>
-                    <button type="button" class="action">See Project</button>
-                </div>
-            </div>
+        <div class="stats__card glass">
+            <span class="stats__number" data-target="3">0</span>
+            <span class="stats__suffix">+</span>
+            <p class="stats__label">Years Learning</p>
         </div>
-
-        <!-- Карточка 4 -->
-        <div class="works-card2 fade-in">
-            <img src="worksimg/Snapshoot Portfolio@2x (3).png" alt="Multi-Post Stories project screenshot">
-            <div class="info-block">
-                <div class="top">
-                    <h2 class="eight">Multi-Post Stories</h2>
-                    <ul class="frame">
-                        <li class="client">CANOPY</li>
-                        <li class="dot"></li>
-                        <li class="role">Back End Dev</li>
-                        <li class="dot"></li>
-                        <li class="year">2015</li>
-                    </ul>
-                </div>
-                <p>A daily selection of privately personalized reads; no accounts or sign-ups required.</p>
-                <div class="bottom">
-                    <ul class="tags">
-                        <li>html</li>
-                        <li>css</li>
-                        <li>javaScript</li>
-                    </ul>
-                    <button type="button" class="action">See Project</button>
-                </div>
-            </div>
+        <div class="stats__card glass">
+            <span class="stats__number" data-target="87">0</span>
+            <span class="stats__suffix">%</span>
+            <p class="stats__label">Code Quality</p>
         </div>
-
     </div>
 </section>
 
-<!-- ─── About Me Section ─── -->
+<!-- ─── Проекты ─── -->
+<section class="projects" id="projects">
+    <div class="container">
+        <h2 class="section__title fade-in">Featured Projects</h2>
+        <div class="projects__grid">
 
-<section id="aboutme">
-    <div id="block1">
-        <div class="abt-text">
-            <h2>About<br>Myself</h2>
-            <p>Hello, I'm a software developer! I can help you build a product, feature or
-               website. Look through some of my work and experience! If you like what you see
-               and have a project you need coded, don't hesitate to contact me.</p>
-        </div>
-        <div class="links">
-            <button type="button" class="button" id="abt-btn">LET'S CONNECT</button>
-            <ul class="media-links" id="abt-links">
-                <li class="media"><a href="https://twitter.com/everinurmind/"><img src="images/Twitter@2x.png" alt="Twitter profile"></a></li>
-                <li class="media"><a href="https://www.linkedin.com/in/everinurmind/"><img src="images/Linkedin@2x.png" alt="LinkedIn profile"></a></li>
-                <li class="media"><a href="https://medium.com/"><img src="images/Medium@2x.png" alt="Medium blog"></a></li>
-                <li class="media"><a href="https://github.com/everinurmind/"><img src="images/GitHub@2x.png" alt="GitHub profile"></a></li>
-                <li class="media"><a href="https://www.angellist.com/"><img src="images/AngelList@2x.png" alt="AngelList profile"></a></li>
-            </ul>
-            <button type="button" class="action2">Get my resume</button>
-        </div>
-    </div>
-
-    <div id="block2">
-
-        <!-- Аккордион: класс accordion-section + open = раскрыт по умолчанию.
-             JS слушает клик на accordion-header и переключает класс open. -->
-
-        <div class="languages accordion-section open" id="dt-lang">
-            <div class="accordion-header" id="intro">
-                <h3>Languages</h3>
-                <button class="arrow" type="button" aria-expanded="true">
-                    <img src="images/Union@2x.png" alt="Toggle languages">
-                </button>
+            <div class="project-card glass fade-in" data-modal="modal1">
+                <div class="project-card__img">
+                    <img src="worksimg/Snapshoot Portfolio@2x.png" alt="Sales Dashboard screenshot">
+                    <div class="project-card__overlay">
+                        <span>View Details</span>
+                    </div>
+                </div>
+                <div class="project-card__body">
+                    <h3>Sales Dashboard</h3>
+                    <p>Interactive Power BI dashboard analyzing regional sales trends.</p>
+                    <ul class="project-card__tags">
+                        <li>Power BI</li><li>SQL</li><li>DAX</li>
+                    </ul>
+                </div>
             </div>
-            <ul class="slide">
-                <li>
-                    <img src="worksimg/Ellipse 1@2x.png" alt="JavaScript icon">
-                    <h3>Javascript</h3>
-                </li>
-                <li>
-                    <img src="worksimg/Ellipse 1@2x (1).png" alt="HTML icon">
-                    <h3>HTML</h3>
-                </li>
-                <li>
-                    <img src="worksimg/Ellipse 1@2x (2).png" alt="CSS icon">
-                    <h3>CSS</h3>
-                </li>
-            </ul>
-        </div>
 
-        <div class="separation"></div>
-
-        <div class="frameworks accordion-section">
-            <div class="accordion-header" id="intro2">
-                <h3>Frameworks</h3>
-                <button class="arrow2" type="button" aria-expanded="false">
-                    <img src="images/Union@2x(1).png" alt="Toggle frameworks">
-                </button>
+            <div class="project-card glass fade-in" data-modal="modal2">
+                <div class="project-card__img">
+                    <img src="worksimg/Snapshoot Portfolio@2x (1).png" alt="ML Pipeline screenshot">
+                    <div class="project-card__overlay">
+                        <span>View Details</span>
+                    </div>
+                </div>
+                <div class="project-card__body">
+                    <h3>ML Pipeline</h3>
+                    <p>End-to-end machine learning pipeline for churn prediction.</p>
+                    <ul class="project-card__tags">
+                        <li>Python</li><li>Scikit-learn</li><li>Pandas</li>
+                    </ul>
+                </div>
             </div>
-            <ul class="slide">
-                <li>
-                    <img src="worksimg/Ellipse 1@2x.png" alt="React icon">
-                    <h3>React</h3>
-                </li>
-                <li>
-                    <img src="worksimg/Ellipse 1@2x (1).png" alt="Node.js icon">
-                    <h3>Node.js</h3>
-                </li>
-            </ul>
-        </div>
 
-        <div class="separation"></div>
-
-        <div class="skills accordion-section">
-            <div class="accordion-header" id="intro3">
-                <h3>Skills</h3>
-                <button class="arrow2" type="button" aria-expanded="false">
-                    <img src="images/Union@2x(1).png" alt="Toggle skills">
-                </button>
+            <div class="project-card glass fade-in" data-modal="modal3">
+                <div class="project-card__img">
+                    <img src="worksimg/Snapshoot Portfolio@2x (2).png" alt="ETL Automation screenshot">
+                    <div class="project-card__overlay">
+                        <span>View Details</span>
+                    </div>
+                </div>
+                <div class="project-card__body">
+                    <h3>ETL Automation</h3>
+                    <p>Automated data extraction and transformation pipeline.</p>
+                    <ul class="project-card__tags">
+                        <li>Python</li><li>SQL</li><li>Airflow</li>
+                    </ul>
+                </div>
             </div>
-            <ul class="slide">
-                <li>
-                    <img src="worksimg/Ellipse 1@2x.png" alt="Git icon">
-                    <h3>Git</h3>
-                </li>
-                <li>
-                    <img src="worksimg/Ellipse 1@2x (1).png" alt="REST API icon">
-                    <h3>REST API</h3>
-                </li>
-            </ul>
+
+            <div class="project-card glass fade-in" data-modal="modal4">
+                <div class="project-card__img">
+                    <img src="worksimg/Snapshoot Portfolio@2x (3).png" alt="Tableau Analytics screenshot">
+                    <div class="project-card__overlay">
+                        <span>View Details</span>
+                    </div>
+                </div>
+                <div class="project-card__body">
+                    <h3>Tableau Analytics</h3>
+                    <p>Customer segmentation visualizations with Tableau.</p>
+                    <ul class="project-card__tags">
+                        <li>Tableau</li><li>SQL</li><li>Python</li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
-
-        <div class="separation"></div>
-
     </div>
 </section>
 
-<!-- ─── Contact Me Section ─── -->
-
-<section id="contact">
-    <div class="end-text">
-        <h2>Contact me</h2>
-        <p>If you have an application you are interested in developing, a feature that you
-           need built or a project that needs coding — I'd love to help with it.</p>
+<!-- Модальные окна проектов -->
+<div class="modal" id="modal1" aria-hidden="true">
+    <div class="modal__backdrop"></div>
+    <div class="modal__content glass">
+        <button class="modal__close" aria-label="Close modal">&times;</button>
+        <h3>Sales Dashboard</h3>
+        <p>An interactive Power BI dashboard that tracks regional sales performance, identifies trends, and enables data-driven decision making. Features drill-through pages, dynamic filters, and DAX measures for KPI calculations.</p>
+        <ul class="project-card__tags"><li>Power BI</li><li>SQL</li><li>DAX</li></ul>
+        <a href="#" class="btn btn--primary" style="margin-top:1.5rem">Live Demo</a>
     </div>
-    <form action="https://formspree.io/f/mqkoarkl" method="post" id="contact-form">
-        <input type="text" name="name" id="name" maxlength="30" placeholder="Full Name" required>
-        <input type="email" name="email" id="email" placeholder="Email Address" required>
-        <textarea name="msg" id="msg" cols="30" rows="5" maxlength="500" placeholder="Write your message here" required></textarea>
-        <button class="action-btn" id="submit-btn" type="submit">Get in touch</button>
-    </form>
-    <div id="shape"></div>
+</div>
+<div class="modal" id="modal2" aria-hidden="true">
+    <div class="modal__backdrop"></div>
+    <div class="modal__content glass">
+        <button class="modal__close" aria-label="Close modal">&times;</button>
+        <h3>ML Pipeline</h3>
+        <p>End-to-end machine learning pipeline for customer churn prediction. Includes data preprocessing, feature engineering, model training with cross-validation, and deployment via REST API.</p>
+        <ul class="project-card__tags"><li>Python</li><li>Scikit-learn</li><li>Pandas</li></ul>
+        <a href="#" class="btn btn--primary" style="margin-top:1.5rem">View Code</a>
+    </div>
+</div>
+<div class="modal" id="modal3" aria-hidden="true">
+    <div class="modal__backdrop"></div>
+    <div class="modal__content glass">
+        <button class="modal__close" aria-label="Close modal">&times;</button>
+        <h3>ETL Automation</h3>
+        <p>Automated ETL pipeline that extracts data from multiple sources, applies cleaning and transformations, and loads it into a data warehouse. Orchestrated with Apache Airflow for scheduled runs.</p>
+        <ul class="project-card__tags"><li>Python</li><li>SQL</li><li>Airflow</li></ul>
+        <a href="#" class="btn btn--primary" style="margin-top:1.5rem">View Code</a>
+    </div>
+</div>
+<div class="modal" id="modal4" aria-hidden="true">
+    <div class="modal__backdrop"></div>
+    <div class="modal__content glass">
+        <button class="modal__close" aria-label="Close modal">&times;</button>
+        <h3>Tableau Analytics</h3>
+        <p>Customer segmentation analysis using RFM methodology, visualized through interactive Tableau dashboards. Enables marketing teams to target specific customer groups with tailored campaigns.</p>
+        <ul class="project-card__tags"><li>Tableau</li><li>SQL</li><li>Python</li></ul>
+        <a href="#" class="btn btn--primary" style="margin-top:1.5rem">Live Demo</a>
+    </div>
+</div>
+
+<!-- ─── Навыки ─── -->
+<section class="skills" id="skills">
+    <div class="container">
+        <h2 class="section__title fade-in">Skills & Expertise</h2>
+        <div class="skills__grid fade-in">
+
+            <div class="skill">
+                <div class="skill__header">
+                    <span class="skill__name">SQL</span>
+                    <span class="skill__percent">90%</span>
+                </div>
+                <div class="skill__track">
+                    <div class="skill__bar" data-width="90"></div>
+                </div>
+            </div>
+
+            <div class="skill">
+                <div class="skill__header">
+                    <span class="skill__name">Python</span>
+                    <span class="skill__percent">85%</span>
+                </div>
+                <div class="skill__track">
+                    <div class="skill__bar" data-width="85"></div>
+                </div>
+            </div>
+
+            <div class="skill">
+                <div class="skill__header">
+                    <span class="skill__name">Tableau</span>
+                    <span class="skill__percent">80%</span>
+                </div>
+                <div class="skill__track">
+                    <div class="skill__bar" data-width="80"></div>
+                </div>
+            </div>
+
+            <div class="skill">
+                <div class="skill__header">
+                    <span class="skill__name">Power BI</span>
+                    <span class="skill__percent">75%</span>
+                </div>
+                <div class="skill__track">
+                    <div class="skill__bar" data-width="75"></div>
+                </div>
+            </div>
+
+            <div class="skill">
+                <div class="skill__header">
+                    <span class="skill__name">Excel</span>
+                    <span class="skill__percent">95%</span>
+                </div>
+                <div class="skill__track">
+                    <div class="skill__bar" data-width="95"></div>
+                </div>
+            </div>
+
+            <div class="skill">
+                <div class="skill__header">
+                    <span class="skill__name">Pandas</span>
+                    <span class="skill__percent">80%</span>
+                </div>
+                <div class="skill__track">
+                    <div class="skill__bar" data-width="80"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </section>
 
-<!-- script.js подключается в конце body: DOM уже загружен когда запускается JS -->
+<!-- ─── Демо кода ─── -->
+<section class="code-showcase" id="code">
+    <div class="container">
+        <h2 class="section__title fade-in">Code Showcase</h2>
+        <div class="code-showcase__wrapper glass fade-in">
+
+            <div class="code-tabs">
+                <button class="code-tab active" data-lang="js">JavaScript</button>
+                <button class="code-tab" data-lang="python">Python</button>
+            </div>
+
+            <div class="code-panel" id="code-js">
+<pre><code class="language-javascript">// Анализ массива данных
+const data = [12, 45, 7, 23, 56, 89, 34];
+
+const stats = {
+  mean: data.reduce((a, b) => a + b) / data.length,
+  max: Math.max(...data),
+  min: Math.min(...data),
+};
+
+console.log(`Mean: ${stats.mean.toFixed(2)}`);
+console.log(`Max: ${stats.max}, Min: ${stats.min}`);</code></pre>
+            </div>
+
+            <div class="code-panel hidden" id="code-python">
+<pre><code class="language-python"># Анализ данных с помощью pandas
+import pandas as pd
+
+data = [12, 45, 7, 23, 56, 89, 34]
+series = pd.Series(data)
+
+print(f"Mean: {series.mean():.2f}")
+print(f"Max: {series.max()}, Min: {series.min()}")</code></pre>
+            </div>
+
+            <div class="code-actions">
+                <button class="btn btn--small" id="copyBtn">Copy</button>
+                <button class="btn btn--small btn--primary" id="runBtn">Run ▶</button>
+            </div>
+
+            <div class="code-output hidden" id="codeOutput">
+                <pre id="codeOutputText"></pre>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── Обо мне ─── -->
+<section class="about" id="about">
+    <div class="container about__grid fade-in">
+        <div class="about__avatar">
+            <div class="avatar-ring">
+                <div class="avatar-initials">NS</div>
+            </div>
+        </div>
+        <div class="about__text">
+            <h2 class="section__title">About Me</h2>
+            <p>I'm a passionate Data Analyst and Python Developer based in Kazakhstan. I love transforming complex datasets into clear, actionable insights that drive business decisions.</p>
+            <p>With experience in SQL, Python, Tableau, and Power BI, I build end-to-end data solutions — from ETL pipelines to interactive dashboards and machine learning models.</p>
+            <div class="about__links">
+                <a href="https://github.com/everinurmind/" class="btn btn--outline" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://www.linkedin.com/in/everinurmind/" class="btn btn--outline" target="_blank" rel="noopener">LinkedIn</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── Контакт ─── -->
+<section class="contact" id="contact">
+    <div class="container">
+        <h2 class="section__title fade-in">Get in Touch</h2>
+        <p class="contact__subtitle fade-in">Have a project in mind? Let's talk about it.</p>
+        <form class="contact__form glass fade-in" id="contactForm" novalidate>
+            <div class="form-group">
+                <input type="text" id="name" name="name" placeholder=" " required maxlength="50">
+                <label for="name">Full Name</label>
+                <span class="form-error" id="nameError"></span>
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" name="email" placeholder=" " required>
+                <label for="email">Email</label>
+                <span class="form-error" id="emailError"></span>
+            </div>
+            <div class="form-group">
+                <textarea id="message" name="message" rows="5" placeholder=" " required maxlength="500"></textarea>
+                <label for="message">Message</label>
+                <span class="form-error" id="messageError"></span>
+            </div>
+            <button type="submit" class="btn btn--primary btn--full">Send Message</button>
+        </form>
+    </div>
+</section>
+
+<!-- ─── Подвал ─── -->
+<footer class="footer">
+    <div class="container footer__inner">
+        <p>&copy; 2026 Nurbol Sultanov. All rights reserved.</p>
+        <div class="footer__socials">
+            <a href="https://github.com/everinurmind/" target="_blank" rel="noopener" aria-label="GitHub">GH</a>
+            <a href="https://www.linkedin.com/in/everinurmind/" target="_blank" rel="noopener" aria-label="LinkedIn">LI</a>
+            <a href="https://twitter.com/everinurmind/" target="_blank" rel="noopener" aria-label="Twitter">TW</a>
+        </div>
+    </div>
+</footer>
+
+<!-- Prism.js — подсветка синтаксиса -->
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
 <script src="script.js"></script>
 </body>
-
 </html>

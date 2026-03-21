@@ -1,144 +1,397 @@
-// ─── 1. HAMBURGER MENU ────────────────────────────────────────────────────────
-// querySelector находит первый элемент с данным классом в DOM
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.navigation-menu');
+// ─── СВЕЧЕНИЕ КУРСОРА ───
+// Плавно перемещаем светящийся круг за курсором мыши
+const cursorGlow = document.getElementById('cursorGlow');
 
-// addEventListener слушает события. 'click' — клик мышью или тач
+document.addEventListener('mousemove', (e) => {
+    cursorGlow.style.left = e.clientX + 'px';
+    cursorGlow.style.top = e.clientY + 'px';
+    cursorGlow.style.opacity = '1';
+});
+
+// Скрываем свечение когда мышь уходит за пределы окна
+document.addEventListener('mouseleave', () => {
+    cursorGlow.style.opacity = '0';
+});
+
+// ─── ГАМБУРГЕР-МЕНЮ ───
+// Переключаем мобильное меню по клику
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('navMenu');
+
 hamburger.addEventListener('click', () => {
-  // classList.toggle добавляет класс если его нет, удаляет если есть
-  hamburger.classList.toggle('active');
-  navMenu.classList.toggle('active');
-
-  // aria-expanded — атрибут доступности (accessibility):
-  // говорит скринридерам открыто ли меню
-  const isOpen = hamburger.classList.contains('active');
-  hamburger.setAttribute('aria-expanded', isOpen);
+    const isOpen = hamburger.classList.toggle('open');
+    navMenu.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', isOpen);
+    // Блокируем прокрутку при открытом меню
+    document.body.style.overflow = isOpen ? 'hidden' : '';
 });
 
-// Закрываем меню когда пользователь нажал на ссылку (UX для мобильных)
-document.querySelectorAll('.navigation').forEach((link) => {
-  link.addEventListener('click', () => {
-    hamburger.classList.remove('active');
-    navMenu.classList.remove('active');
-    hamburger.setAttribute('aria-expanded', 'false');
-  });
+// Закрываем меню при клике на ссылку
+navMenu.querySelectorAll('.nav__link').forEach((link) => {
+    link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navMenu.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+    });
 });
 
-// ─── 2. ACCORDION (сворачиваемые секции) ──────────────────────────────────────
-// Находим все заголовки аккордиона
-document.querySelectorAll('.accordion-header').forEach((header) => {
-  header.addEventListener('click', () => {
-    // closest() ищет ближайшего родителя с данным классом
-    const section = header.closest('.accordion-section');
-    const isOpen = section.classList.contains('open');
+// ─── ЭФФЕКТ ПЕЧАТНОЙ МАШИНКИ ───
+// Рекурсивно печатает и стирает слова из массива
+const typewriterEl = document.getElementById('typewriter');
+const roles = ['Data Analyst', 'Python Developer', 'ML Engineer'];
+let roleIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
 
-    // Закрываем все открытые секции (только одна открыта за раз)
-    document.querySelectorAll('.accordion-section').forEach((s) => {
-      s.classList.remove('open');
-      s.querySelector('.accordion-header button').setAttribute('aria-expanded', 'false');
-    });
+function typewrite() {
+    const currentWord = roles[roleIndex];
 
-    // Открываем кликнутую (если она была закрыта)
-    if (!isOpen) {
-      section.classList.add('open');
-      header.querySelector('button').setAttribute('aria-expanded', 'true');
-    }
-  });
-});
-
-// ─── 3. АНИМАЦИИ ПРИ СКРОЛЛЕ (IntersectionObserver) ─────────────────────────
-// IntersectionObserver — современный API для определения видимости элементов.
-// Он намного эффективнее чем scroll event + getBoundingClientRect()!
-const fadeObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      // isIntersecting = true когда элемент входит в область видимости
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        // unobserve — перестаём следить после первой анимации (оптимизация)
-        fadeObserver.unobserve(entry.target);
-      }
-    });
-  },
-  {
-    threshold: 0.12, // 12% элемента должно быть видно для срабатывания
-    rootMargin: '0px 0px -40px 0px', // сдвигаем триггер на 40px вверх
-  }
-);
-
-// Добавляем наблюдение за всеми элементами с классом fade-in
-document.querySelectorAll('.fade-in').forEach((el) => fadeObserver.observe(el));
-
-// ─── 4. АКТИВНАЯ ССЫЛКА В НАВИГАЦИИ ПРИ СКРОЛЛЕ ──────────────────────────────
-// Ещё один IntersectionObserver — следим за разделами страницы
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('a.navigation');
-
-const navObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        // Убираем active со всех ссылок
-        navLinks.forEach((link) => link.classList.remove('active'));
-
-        // Находим ссылку которая ссылается на текущий раздел
-        const activeLink = document.querySelector(
-          `.navigation[href="#${entry.target.id}"]`
-        );
-        if (activeLink) activeLink.classList.add('active');
-      }
-    });
-  },
-  { threshold: 0.4 } // 40% раздела должно быть видно
-);
-
-sections.forEach((section) => navObserver.observe(section));
-
-// ─── 5. ВАЛИДАЦИЯ ФОРМЫ ───────────────────────────────────────────────────────
-const contactForm = document.getElementById('contact-form');
-
-if (contactForm) {
-  contactForm.addEventListener('submit', (e) => {
-    const nameInput = document.getElementById('name');
-    const emailInput = document.getElementById('email');
-    const msgInput = document.getElementById('msg');
-
-    // Убираем пробелы по краям и проверяем минимальную длину
-    if (nameInput.value.trim().length < 2) {
-      e.preventDefault(); // останавливаем отправку формы
-      nameInput.focus();
-      showError(nameInput, 'Имя должно быть не менее 2 символов');
-      return;
+    if (isDeleting) {
+        // Стираем по одному символу
+        charIndex--;
+        typewriterEl.textContent = currentWord.substring(0, charIndex);
+    } else {
+        // Печатаем по одному символу
+        charIndex++;
+        typewriterEl.textContent = currentWord.substring(0, charIndex);
     }
 
-    if (msgInput.value.trim().length < 10) {
-      e.preventDefault();
-      msgInput.focus();
-      showError(msgInput, 'Сообщение слишком короткое (минимум 10 символов)');
-    }
-  });
+    // Определяем задержку в зависимости от направления
+    let delay = isDeleting ? 50 : 100;
 
-  // Убираем стиль ошибки когда пользователь начинает печатать
-  ['name', 'email', 'msg'].forEach((id) => {
-    document.getElementById(id).addEventListener('input', function () {
-      this.classList.remove('input-error');
-    });
-  });
+    if (!isDeleting && charIndex === currentWord.length) {
+        // Слово напечатано — пауза перед стиранием
+        delay = 2000;
+        isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+        // Слово стёрто — переходим к следующему
+        isDeleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+        delay = 500;
+    }
+
+    // Рекурсивный вызов через setTimeout
+    setTimeout(typewrite, delay);
 }
 
-// Вспомогательная функция для показа ошибки
-function showError(input, message) {
-  input.classList.add('input-error');
+// Запускаем печатную машинку
+typewrite();
 
-  // Ищем или создаём элемент для сообщения об ошибке
-  let errorEl = input.nextElementSibling;
-  if (!errorEl || !errorEl.classList.contains('error-msg')) {
-    errorEl = document.createElement('span');
-    errorEl.classList.add('error-msg');
-    input.parentNode.insertBefore(errorEl, input.nextSibling);
-  }
-  errorEl.textContent = message;
+// ─── СЧЁТЧИКИ СТАТИСТИКИ ───
+// Анимируем числа от 0 до целевого значения через requestAnimationFrame
+function animateCounters() {
+    const counters = document.querySelectorAll('.stats__number');
 
-  // Удаляем сообщение через 3 секунды
-  setTimeout(() => errorEl.remove(), 3000);
+    counters.forEach((counter) => {
+        const target = parseInt(counter.getAttribute('data-target'), 10);
+        const duration = 2000; // Длительность анимации в мс
+        let startTime = null;
+
+        function updateCounter(timestamp) {
+            if (!startTime) startTime = timestamp;
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+
+            // Функция замедления — ease-out
+            const eased = 1 - Math.pow(1 - progress, 3);
+            counter.textContent = Math.floor(eased * target);
+
+            if (progress < 1) {
+                requestAnimationFrame(updateCounter);
+            } else {
+                counter.textContent = target;
+            }
+        }
+
+        requestAnimationFrame(updateCounter);
+    });
+}
+
+// Запускаем счётчики когда секция попадает в видимую область
+const statsSection = document.querySelector('.stats');
+const statsObserver = new IntersectionObserver(
+    (entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                animateCounters();
+                // Отключаем наблюдатель после первого срабатывания
+                statsObserver.unobserve(entry.target);
+            }
+        });
+    },
+    { threshold: 0.3 }
+);
+
+if (statsSection) {
+    statsObserver.observe(statsSection);
+}
+
+// ─── МОДАЛЬНЫЕ ОКНА ───
+// Открытие модалки по клику на карточку проекта
+const projectCards = document.querySelectorAll('[data-modal]');
+const modals = document.querySelectorAll('.modal');
+
+projectCards.forEach((card) => {
+    card.addEventListener('click', () => {
+        const modalId = card.getAttribute('data-modal');
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.classList.add('active');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+    });
+});
+
+// Закрытие модалки — по кнопке крестика
+modals.forEach((modal) => {
+    const closeBtn = modal.querySelector('.modal__close');
+    const backdrop = modal.querySelector('.modal__backdrop');
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => closeModal(modal));
+    }
+
+    // Закрытие по клику на затемнённый фон
+    if (backdrop) {
+        backdrop.addEventListener('click', () => closeModal(modal));
+    }
+});
+
+// Закрытие модалки по нажатию Escape
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        modals.forEach((modal) => {
+            if (modal.classList.contains('active')) {
+                closeModal(modal);
+            }
+        });
+    }
+});
+
+// Функция закрытия модального окна
+function closeModal(modal) {
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+}
+
+// ─── ПРОГРЕСС-БАРЫ НАВЫКОВ ───
+// Анимируем ширину полосок при попадании секции в видимую область
+const skillBars = document.querySelectorAll('.skill__bar');
+const skillsObserver = new IntersectionObserver(
+    (entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                // Устанавливаем ширину из data-атрибута
+                const bars = entry.target.querySelectorAll('.skill__bar');
+                bars.forEach((bar) => {
+                    const width = bar.getAttribute('data-width');
+                    bar.style.width = width + '%';
+                });
+                // Отключаем наблюдатель после срабатывания
+                skillsObserver.unobserve(entry.target);
+            }
+        });
+    },
+    { threshold: 0.2 }
+);
+
+// Наблюдаем за секцией навыков
+const skillsGrid = document.querySelector('.skills__grid');
+if (skillsGrid) {
+    skillsObserver.observe(skillsGrid);
+}
+
+// ─── ТАБЫ КОДА ───
+// Переключаем между JavaScript и Python
+const codeTabs = document.querySelectorAll('.code-tab');
+const codePanels = {
+    js: document.getElementById('code-js'),
+    python: document.getElementById('code-python'),
+};
+
+codeTabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+        const lang = tab.getAttribute('data-lang');
+
+        // Обновляем активный таб
+        codeTabs.forEach((t) => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        // Показываем нужную панель
+        Object.values(codePanels).forEach((panel) => {
+            if (panel) panel.classList.add('hidden');
+        });
+        if (codePanels[lang]) codePanels[lang].classList.remove('hidden');
+
+        // Скрываем вывод при переключении
+        const output = document.getElementById('codeOutput');
+        if (output) output.classList.add('hidden');
+    });
+});
+
+// ─── КОПИРОВАНИЕ КОДА ───
+// Копируем видимый код в буфер обмена через Clipboard API
+const copyBtn = document.getElementById('copyBtn');
+
+if (copyBtn) {
+    copyBtn.addEventListener('click', () => {
+        // Находим видимую панель кода
+        const visiblePanel = document.querySelector('.code-panel:not(.hidden) code');
+        if (visiblePanel) {
+            navigator.clipboard.writeText(visiblePanel.textContent).then(() => {
+                // Показываем подтверждение копирования
+                const originalText = copyBtn.textContent;
+                copyBtn.textContent = 'Copied!';
+                setTimeout(() => {
+                    copyBtn.textContent = originalText;
+                }, 2000);
+            });
+        }
+    });
+}
+
+// ─── ЗАПУСК КОДА (ИМИТАЦИЯ) ───
+// Показываем заготовленный результат выполнения
+const runBtn = document.getElementById('runBtn');
+const codeOutput = document.getElementById('codeOutput');
+const codeOutputText = document.getElementById('codeOutputText');
+
+// Заготовленные результаты для каждого языка
+const mockOutputs = {
+    js: 'Mean: 38.00\nMax: 89, Min: 7',
+    python: 'Mean: 38.00\nMax: 89, Min: 7',
+};
+
+if (runBtn) {
+    runBtn.addEventListener('click', () => {
+        // Определяем активный язык
+        const activeTab = document.querySelector('.code-tab.active');
+        const lang = activeTab ? activeTab.getAttribute('data-lang') : 'js';
+
+        // Показываем вывод
+        if (codeOutput && codeOutputText) {
+            codeOutput.classList.remove('hidden');
+            codeOutputText.textContent = '';
+
+            // Имитация построчного вывода
+            const lines = mockOutputs[lang].split('\n');
+            let lineIndex = 0;
+
+            function printLine() {
+                if (lineIndex < lines.length) {
+                    codeOutputText.textContent +=
+                        (lineIndex > 0 ? '\n' : '') + lines[lineIndex];
+                    lineIndex++;
+                    setTimeout(printLine, 300);
+                }
+            }
+
+            printLine();
+        }
+    });
+}
+
+// ─── ПЛАВНОЕ ПОЯВЛЕНИЕ ЭЛЕМЕНТОВ ───
+// Добавляем класс visible при попадании элемента в видимую область
+const fadeElements = document.querySelectorAll('.fade-in');
+const fadeObserver = new IntersectionObserver(
+    (entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                // Отключаем наблюдение после появления
+                fadeObserver.unobserve(entry.target);
+            }
+        });
+    },
+    { threshold: 0.1 }
+);
+
+fadeElements.forEach((el) => fadeObserver.observe(el));
+
+// ─── СКРОЛЛ-ШПИОН ───
+// Подсвечиваем ссылку навигации для текущей видимой секции
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav__link[data-section]');
+
+const scrollSpyObserver = new IntersectionObserver(
+    (entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                // Убираем активный класс со всех ссылок
+                navLinks.forEach((link) => link.classList.remove('active'));
+                // Добавляем активный класс нужной ссылке
+                const activeLink = document.querySelector(
+                    `.nav__link[data-section="${id}"]`
+                );
+                if (activeLink) activeLink.classList.add('active');
+            }
+        });
+    },
+    {
+        rootMargin: '-50% 0px -50% 0px',
+    }
+);
+
+sections.forEach((section) => scrollSpyObserver.observe(section));
+
+// ─── ВАЛИДАЦИЯ ФОРМЫ ───
+// Проверяем поля формы перед отправкой
+const contactForm = document.getElementById('contactForm');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById('name');
+        const email = document.getElementById('email');
+        const message = document.getElementById('message');
+        const nameError = document.getElementById('nameError');
+        const emailError = document.getElementById('emailError');
+        const messageError = document.getElementById('messageError');
+
+        let isValid = true;
+
+        // Проверяем имя — минимум 2 символа
+        if (name.value.trim().length < 2) {
+            nameError.textContent = 'Name must be at least 2 characters';
+            isValid = false;
+        } else {
+            nameError.textContent = '';
+        }
+
+        // Проверяем email — формат адреса
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email.value.trim())) {
+            emailError.textContent = 'Please enter a valid email address';
+            isValid = false;
+        } else {
+            emailError.textContent = '';
+        }
+
+        // Проверяем сообщение — минимум 10 символов
+        if (message.value.trim().length < 10) {
+            messageError.textContent = 'Message must be at least 10 characters';
+            isValid = false;
+        } else {
+            messageError.textContent = '';
+        }
+
+        // Если всё валидно — имитируем отправку
+        if (isValid) {
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            submitBtn.textContent = 'Sent!';
+            submitBtn.disabled = true;
+
+            // Сбрасываем форму через 3 секунды
+            setTimeout(() => {
+                contactForm.reset();
+                submitBtn.textContent = 'Send Message';
+                submitBtn.disabled = false;
+            }, 3000);
+        }
+    });
 }
