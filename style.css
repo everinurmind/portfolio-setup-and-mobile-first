@@ -1,3 +1,26 @@
+/* ─── CSS ПЕРЕМЕННЫЕ (Custom Properties) ────────────────────────────────────────
+   Переменные объявляются в :root (глобальный scope).
+   Используются как var(--название). Удобно: меняешь в одном месте — меняется везде.
+────────────────────────────────────────────────────────────────────────────── */
+:root {
+  --color-primary: #6070ff;
+  --color-primary-dark: #2230d2;
+  --color-primary-hover: #396df2;
+  --color-primary-bg: #ebebff;
+  --color-text-dark: #172b4d;
+  --color-text-medium: #344563;
+  --color-text-light: #7a869a;
+  --color-text-label: #253858;
+  --color-border: #dfe1e6;
+  --color-bg-card: #f7f7f9;
+  --color-dot: #c1c7d0;
+  --color-placeholder: #b3bac5;
+  --radius-card: 16px;
+  --radius-btn: 8px;
+  --transition: 0.25s ease;
+}
+
+/* ─── ГЛОБАЛЬНЫЙ СБРОС ──────────────────────────────────────────────────────── */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -6,21 +29,59 @@
   list-style: none;
 }
 
-/* Headline Section */
+/* Плавный скролл при нажатии на якорные ссылки (#works, #aboutme, #contact) */
+html {
+  scroll-behavior: smooth;
+}
 
+/* ─── FADE-IN АНИМАЦИЯ ───────────────────────────────────────────────────────
+   Элементы с классом .fade-in изначально невидимы и сдвинуты вниз.
+   JS добавляет класс .visible когда элемент входит в область видимости —
+   тогда срабатывает CSS transition и элемент плавно появляется.
+────────────────────────────────────────────────────────────────────────────── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── ВАЛИДАЦИЯ ФОРМЫ ───────────────────────────────────────────────────────── */
+.input-error {
+  border-color: #e53e3e !important;
+  outline-color: #e53e3e;
+}
+
+.error-msg {
+  display: block;
+  color: #e53e3e;
+  font-size: 13px;
+  margin-top: -12px;
+  margin-bottom: 12px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   МОБИЛЬНАЯ ВЕРСИЯ  (max-width: 768px)
+   Mobile-first: сначала пишем стили для маленьких экранов
+═══════════════════════════════════════════════════════════════════════════════ */
 @media only screen and (max-width: 768px) {
   body {
     background-color: #e5e5e5;
   }
 
-  .navigation {
-    display: none;
-  }
+  /* ─── Header / Navbar ─────────────────────────────────────────────────────── */
 
   header {
     width: 100%;
     height: 50px;
     background-color: #fff;
+    /* position: relative нужен чтобы выпадающее меню позиционировалось относительно header */
+    position: relative;
+    z-index: 100;
   }
 
   .navbar {
@@ -32,38 +93,6 @@
     width: 100%;
   }
 
-  .navbar.hamburger {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 8px;
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
-  }
-
-  .hamburger .bar {
-    justify-content: space-between;
-    display: flex;
-    flex-flow: column wrap;
-    width: 1.5rem;
-    height: 0.25rem;
-    background: #6070ff;
-    border-radius: 5px;
-    margin: 3px 0;
-  }
-
-  .navbar.logo {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 10px 12px;
-    position: absolute;
-    width: 1.25rem;
-    height: 20px;
-  }
-
   .logo a {
     width: 76px;
     height: 20px;
@@ -73,9 +102,92 @@
     display: flex;
     align-items: center;
     text-align: center;
-    color: #6070ff;
+    color: var(--color-primary);
     text-decoration: none;
   }
+
+  /* ─── Гамбургер кнопка ──────────────────────────────────────────────────────
+     Три полоски превращаются в X когда добавляется класс .active (через JS).
+     Используем transform: rotate() и opacity для анимации.
+  ────────────────────────────────────────────────────────────────────────────── */
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    border-radius: var(--radius-btn);
+  }
+
+  .hamburger .bar {
+    display: block;
+    width: 1.5rem;
+    height: 0.25rem;
+    background: var(--color-primary);
+    border-radius: 5px;
+    /* transition применяется к transform и opacity для плавной анимации */
+    transition: transform var(--transition), opacity var(--transition);
+  }
+
+  /* Анимация в X: верхняя полоска поворачивается на 45°, нижняя на -45°, средняя исчезает */
+  .hamburger.active .bar.top {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .hamburger.active .bar.middle {
+    opacity: 0;
+  }
+
+  .hamburger.active .bar.bottom {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  /* ─── Мобильное меню навигации ──────────────────────────────────────────────
+     По умолчанию — скрыто (height: 0, overflow: hidden).
+     Когда JS добавляет .active — разворачивается вниз.
+  ────────────────────────────────────────────────────────────────────────────── */
+  .navigation-menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    overflow: hidden;
+    max-height: 0; /* скрыто */
+    transition: max-height 0.35s ease, box-shadow 0.35s ease;
+    z-index: 99;
+  }
+
+  /* Когда JS добавил .active — открываем меню */
+  .navigation-menu.active {
+    max-height: 300px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  .navigation {
+    display: flex;
+    padding: 1rem 1.5rem;
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--color-text-medium);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-border);
+    transition: color var(--transition), background-color var(--transition);
+  }
+
+  .navigation:hover,
+  .navigation.active {
+    color: var(--color-primary);
+    background-color: var(--color-primary-bg);
+  }
+
+  /* ─── Hero / Headline ────────────────────────────────────────────────────── */
 
   .headline {
     max-width: 100vw;
@@ -94,7 +206,7 @@
     line-height: 52px;
     display: flex;
     align-items: center;
-    color: #172b4d;
+    color: var(--color-text-dark);
     margin-top: 75px;
     margin-bottom: 50px;
   }
@@ -104,7 +216,7 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-    color: #344563;
+    color: var(--color-text-medium);
     flex: none;
     order: 1;
     flex-grow: 0;
@@ -122,10 +234,13 @@
   }
 
   .media img {
-    justify-content: space-between;
     width: 1.6rem;
     height: 1.5rem;
     transition: transform 0.3s ease-in-out;
+  }
+
+  .media img:hover {
+    transform: scale(1.3);
   }
 
   .button {
@@ -138,16 +253,16 @@
     padding: 10px 0 15px;
     background-color: transparent;
     border: none;
+    cursor: pointer;
     margin-top: 10px;
     margin-bottom: 12px;
   }
 
   .button:hover {
-    cursor: pointer;
     text-decoration: underline;
   }
 
-  /* Works Section */
+  /* ─── Works Section ──────────────────────────────────────────────────────── */
 
   #works {
     display: flex;
@@ -163,30 +278,7 @@
     grid-gap: 5rem;
   }
 
-  .works-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-sizing: border-box;
-    padding: 16px;
-    gap: 12px;
-    margin: 20px;
-    border: 1px solid #dfe1e6;
-    border-radius: 16px;
-    height: 100%;
-    background-color: #fff;
-  }
-
-  .works-card:hover {
-    box-shadow: 0 0 16px;
-    cursor: pointer;
-  }
-
-  .works-card img {
-    height: 220px;
-    border-radius: 8px;
-  }
-
+  .works-card,
   .works-card2 {
     display: flex;
     flex-direction: column;
@@ -195,20 +287,24 @@
     padding: 16px;
     gap: 12px;
     margin: 20px;
-    border: 1px solid #dfe1e6;
-    border-radius: 16px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
     height: 100%;
     background-color: #fff;
+    /* transition для hover эффекта тени */
+    transition: box-shadow var(--transition);
   }
 
+  .works-card:hover,
   .works-card2:hover {
-    box-shadow: 0 0 16px;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.15);
     cursor: pointer;
   }
 
+  .works-card img,
   .works-card2 img {
     height: 220px;
-    border-radius: 8px;
+    border-radius: var(--radius-btn);
   }
 
   .info-block {
@@ -238,7 +334,7 @@
     font-weight: 700;
     font-size: 32px;
     line-height: 44px;
-    color: #172b4d;
+    color: var(--color-text-dark);
   }
 
   .frame {
@@ -251,26 +347,28 @@
     padding-bottom: 10px;
   }
 
-  #client {
+  /* Исправлено: было id="client" — теперь class="client" */
+  .client {
     padding: 8px 0;
     width: 55px;
     height: 32px;
     font-weight: 600;
     font-size: 13px;
     line-height: 16px;
-    color: #344563;
+    color: var(--color-text-medium);
     margin-right: 5px;
   }
 
-  #dot {
+  /* Исправлено: было id="dot" — теперь class="dot" */
+  .dot {
     margin: 5px 0;
     border-radius: 20px;
     width: 7px;
     height: 7px;
-    background: #c1c7d0;
+    background: var(--color-dot);
   }
 
-  #role {
+  .role {
     margin: 0 5px;
     padding: 8px 0;
     width: 98px;
@@ -278,10 +376,10 @@
     font-weight: 600;
     font-size: 13px;
     line-height: 16px;
-    color: #7a869a;
+    color: var(--color-text-light);
   }
 
-  #year {
+  .year {
     margin-left: 5px;
     padding: 8px 0;
     width: 29px;
@@ -289,7 +387,7 @@
     font-weight: 600;
     font-size: 13px;
     line-height: 16px;
-    color: #7a869a;
+    color: var(--color-text-light);
   }
 
   .info-block p {
@@ -298,7 +396,7 @@
     font-weight: 400;
     font-size: 15px;
     line-height: 24px;
-    color: #344563;
+    color: var(--color-text-medium);
     text-align: left;
   }
 
@@ -318,13 +416,13 @@
 
   .tags li {
     padding: 4px 12px;
-    background: #ebebff;
-    border-radius: 8px;
+    background: var(--color-primary-bg);
+    border-radius: var(--radius-btn);
     font-weight: 500;
     font-size: 12px;
     line-height: 16px;
     letter-spacing: 0.03em;
-    color: #6070ff;
+    color: var(--color-primary);
   }
 
   .bottom {
@@ -336,11 +434,10 @@
     font-size: 17px;
     width: 124px;
     height: 48px;
-    left: 0;
     margin-top: 15%;
-    border-radius: 8px;
-    border: 1px solid #6070ff;
-    color: #6070ff;
+    border-radius: var(--radius-btn);
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
     background-color: #fff;
     box-sizing: border-box;
     display: flex;
@@ -348,30 +445,31 @@
     align-items: center;
     padding: 12px;
     gap: 10px;
+    cursor: pointer;
+    transition: background-color var(--transition), color var(--transition), box-shadow var(--transition);
   }
 
   .action:hover {
-    background: #6070ff;
+    background: var(--color-primary);
     box-shadow: 0 8px 16px rgba(64, 83, 252, 0.24);
-    border-radius: 8px;
     color: #fff;
   }
 
   .action:active {
-    background-color: #2230d2;
+    background-color: var(--color-primary-dark);
   }
 
-  #six {
+  .six {
     height: 36px;
     text-align: left;
   }
 
-  #eight {
+  .eight {
     height: 80px;
     text-align: left;
   }
 
-  /* About Me Section */
+  /* ─── About Me Section ───────────────────────────────────────────────────── */
 
   .abt-text h2 {
     height: 101px;
@@ -380,7 +478,7 @@
     line-height: 52px;
     display: flex;
     align-items: center;
-    color: #172b4d;
+    color: var(--color-text-dark);
     margin-bottom: 20px;
   }
 
@@ -404,90 +502,122 @@
     gap: 10px;
     width: 168px;
     height: 48px;
-    border: 1px solid #6070ff;
-    border-radius: 8px;
+    border: 1px solid var(--color-primary);
+    border-radius: var(--radius-btn);
     margin-top: 20px;
     margin-bottom: 60px;
     font-size: 17px;
     line-height: 24px;
     letter-spacing: 0.03em;
-    color: #396df2;
+    color: var(--color-primary-hover);
     background-color: #fff;
+    cursor: pointer;
+    transition: background-color var(--transition), color var(--transition), box-shadow var(--transition);
   }
 
   .action2:hover {
-    background: #6070ff;
+    background: var(--color-primary);
     box-shadow: 0 8px 16px rgba(64, 83, 252, 0.24);
-    border-radius: 8px;
     color: #fff;
   }
 
   .action2:active {
-    background-color: #2230d2;
+    background-color: var(--color-primary-dark);
   }
 
-  /* Skills Section */
+  /* ─── Accordion / Skills ─────────────────────────────────────────────────────
+     .accordion-section содержит .accordion-header и .slide.
+     По умолчанию .slide скрыт (max-height: 0).
+     Когда JS добавляет .open — .slide разворачивается.
+  ────────────────────────────────────────────────────────────────────────────── */
 
   .languages {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     padding: 0;
-    height: 320.15px;
   }
 
-  #separation {
+  /* Исправлено: было id="separation" — теперь class="separation" */
+  .separation {
     height: 1px;
-    background: #dfe1e6;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 50px;
+    background: var(--color-border);
+    width: 100%;
+    margin: 24px 0;
   }
 
-  .frameworks {
-    display: flex;
-    flex-direction: column;
-    margin-top: 24px;
-    margin-bottom: 24px;
-  }
-
+  .frameworks,
   .skills {
     display: flex;
     flex-direction: column;
-    margin-top: 24px;
-    margin-bottom: 24px;
   }
 
-  .arrow {
+  .accordion-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 72px;
+    cursor: pointer;
+  }
+
+  .accordion-header h3 {
+    height: 24px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    color: #000;
+  }
+
+  /* Скрываем содержимое аккордиона по умолчанию */
+  .accordion-section .slide {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+
+  /* Когда JS добавляет .open — раскрываем */
+  .accordion-section.open .slide {
+    max-height: 500px;
+  }
+
+  .arrow,
+  .arrow2 {
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
     padding: 8px;
     width: 40px;
     height: 40px;
     border: none;
-    background-color: #fff;
+    background-color: transparent;
+    cursor: pointer;
+    /* Стрелка поворачивается когда секция открыта */
+    transition: transform var(--transition);
   }
 
-  .arrow2 {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    width: 40px;
-    height: 40px;
-    border: none;
-    background-color: #fff;
+  /* Когда accordion-section.open — стрелка смотрит вниз */
+  .accordion-section.open .arrow,
+  .accordion-section.open .arrow2 {
+    transform: rotate(180deg);
+  }
+
+  .arrow img,
+  .arrow2 img {
+    width: 14px;
+    height: 14px;
   }
 
   .slide {
-    margin-top: 36px;
-    margin-bottom: 36px;
+    margin-bottom: 12px;
   }
 
   .slide img {
     width: 48px;
     height: 48px;
-    left: 12px;
     margin-left: 12px;
     margin-right: 16px;
   }
@@ -499,100 +629,22 @@
     flex-direction: row;
     width: 303px;
     height: 66.72px;
-    list-style-type: none;
-    background: #f7f7f9;
-    border-radius: 8px;
+    background: var(--color-bg-card);
+    border-radius: var(--radius-btn);
     margin: 12px 0;
   }
 
-  li h3 {
+  .slide li h3 {
     height: 24px;
-    left: 76px;
-    right: 12px;
     font-weight: 500;
     font-size: 15px;
     line-height: 20px;
     display: flex;
     align-items: center;
-    color: #253858;
+    color: var(--color-text-label);
   }
 
-  /* Animations and transitions */
-
-  .media img:hover {
-    transform: scale(1.3);
-  }
-
-  #intro {
-    display: flex;
-    height: 72px;
-  }
-
-  #intro2 {
-    display: flex;
-    height: 72px;
-    margin-top: 24px;
-  }
-
-  #intro3 {
-    display: flex;
-    height: 72px;
-    margin-bottom: 24px;
-  }
-
-  #intro h3 {
-    height: 24px;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    color: #000;
-    margin-right: 136px;
-  }
-
-  #intro2 h3 {
-    height: 24px;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    color: #000;
-    margin-right: 141px;
-    margin-top: 24px;
-  }
-
-  #intro3 h3 {
-    height: 24px;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    color: #000;
-    margin-right: 217px;
-    margin-top: 24px;
-  }
-
-  #intro img {
-    width: 14px;
-    height: 8px;
-  }
-
-  #intro2 img {
-    width: 8px;
-    height: 14px;
-    margin-top: 24px;
-  }
-
-  #intro3 img {
-    width: 8px;
-    height: 14px;
-    margin-top: 24px;
-  }
-
-  /* Contact Section */
+  /* ─── Contact Section ────────────────────────────────────────────────────── */
 
   #contact {
     border-top-left-radius: 5.5rem;
@@ -630,61 +682,46 @@
     font-size: 20px;
     line-height: 24px;
     color: #ebebff;
-    flex: none;
-    order: 1;
-    flex-grow: 0;
     text-align: center;
     margin-bottom: 87px;
     margin-left: 24px;
     margin-right: 24px;
   }
 
-  #name {
-    float: left;
-    width: 100%;
-    border: 1px solid #cfd8dc;
-    border-radius: 8px;
-    min-width: 327px;
-    height: 48px;
-    margin-bottom: 20px;
-    padding: 15px;
-    text-transform: capitalize;
-    font-weight: 400;
-    font-size: 17px;
-    color: #172b4d;
-  }
-
-  #email {
-    float: left;
-    width: 100%;
-    border: 1px solid #cfd8dc;
-    border-radius: 8px;
-    min-width: 327px;
-    height: 48px;
-    margin-bottom: 20px;
-    padding: 15px;
-    text-transform: capitalize;
-    font-weight: 400;
-    font-size: 17px;
-    color: #172b4d;
-  }
-
+  #name,
+  #email,
   #msg {
     float: left;
     width: 100%;
     border: 1px solid #cfd8dc;
-    border-radius: 8px;
+    border-radius: var(--radius-btn);
     min-width: 327px;
-    height: 170px;
+    margin-bottom: 20px;
     padding: 15px;
-    text-transform: capitalize;
     font-weight: 400;
     font-size: 17px;
-    color: #172b4d;
+    color: var(--color-text-dark);
+    transition: border-color var(--transition);
+  }
+
+  #name:focus,
+  #email:focus,
+  #msg:focus {
+    outline: none;
+    border-color: var(--color-primary);
+  }
+
+  #name,
+  #email {
+    height: 48px;
+  }
+
+  #msg {
+    height: 170px;
   }
 
   ::placeholder {
-    color: #b3bac5;
+    color: var(--color-placeholder);
     font-weight: 400;
     font-size: 15px;
   }
@@ -697,27 +734,27 @@
     gap: 10px;
     width: 142px;
     height: 48px;
-    border: 1px solid #6070ff;
-    border-radius: 8px;
+    border: 1px solid var(--color-primary);
+    border-radius: var(--radius-btn);
     margin-top: 34px;
     margin-bottom: 32px;
-    margin-right: 209px;
     font-size: 17px;
     line-height: 24px;
     letter-spacing: 0.03em;
-    color: #396df2;
+    color: var(--color-primary-hover);
     background-color: #fff;
+    cursor: pointer;
+    transition: background-color var(--transition), color var(--transition), box-shadow var(--transition);
   }
 
   .action-btn:hover {
     box-shadow: 0 8px 16px rgba(64, 83, 252, 0.24);
-    border-radius: 8px;
     color: #fff;
-    background-color: #2230d2;
+    background-color: var(--color-primary-dark);
   }
 
   .action-btn:active {
-    background-color: #2230d2;
+    background-color: var(--color-primary-dark);
   }
 
   #shape {
@@ -733,8 +770,9 @@
   }
 }
 
-/* Desktop Version */
-
+/* ═══════════════════════════════════════════════════════════════════════════════
+   ДЕСКТОПНАЯ ВЕРСИЯ  (min-width: 768px)
+═══════════════════════════════════════════════════════════════════════════════ */
 @media only screen and (min-width: 768px) {
   #shape {
     display: none;
@@ -769,11 +807,12 @@
     display: flex;
     align-items: center;
     text-align: center;
-    color: #6070ff;
+    color: var(--color-primary);
     text-decoration: none;
     margin-left: 55px;
   }
 
+  /* Гамбургер скрыт на десктопе */
   .hamburger {
     display: none;
   }
@@ -786,32 +825,47 @@
   }
 
   .navigation {
-    width: 46px;
     font-weight: 500;
     font-size: 15px;
     line-height: 20px;
     display: flex;
     align-items: center;
     text-align: center;
-    color: #344563;
-    text-decoration-line: none;
+    color: var(--color-text-medium);
+    text-decoration: none;
     margin-right: 55px;
+    padding: 6px 4px;
+    /* Подчёркивание плавно появляется при hover */
+    border-bottom: 2px solid transparent;
+    transition: color var(--transition), border-color var(--transition);
   }
 
+  /* Активная ссылка — подчёркивание основного цвета (добавляется JS) */
+  .navigation:hover,
+  .navigation.active {
+    color: var(--color-primary);
+    border-bottom-color: var(--color-primary);
+  }
+
+  /* Анимация появления меню при загрузке страницы */
   .navigation-menu {
-    animation-duration: 4.5s;
+    animation-duration: 0.6s;
     animation-name: slidein;
   }
 
   @keyframes slidein {
     from {
-      margin-left: 100%;
+      opacity: 0;
+      transform: translateX(40px);
     }
 
     to {
-      margin-left: 0%;
+      opacity: 1;
+      transform: translateX(0);
     }
   }
+
+  /* ─── Hero / Headline ────────────────────────────────────────────────────── */
 
   .headline {
     border-bottom-left-radius: 5.5rem;
@@ -827,7 +881,7 @@
     line-height: 52px;
     display: flex;
     align-items: center;
-    color: #172b4d;
+    color: var(--color-text-dark);
     margin-top: 247px;
     margin-bottom: 12px;
     padding: 0 260px;
@@ -837,7 +891,7 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-    color: #344563;
+    color: var(--color-text-medium);
     padding: 0 260px;
     margin-bottom: 24px;
   }
@@ -855,10 +909,13 @@
   }
 
   .media img {
-    justify-content: space-between;
     width: 1.6rem;
     height: 1.5rem;
     transition: transform 0.3s ease-in-out;
+  }
+
+  .media img:hover {
+    transform: scale(1.3);
   }
 
   .button {
@@ -870,17 +927,17 @@
     line-height: 24px;
     background-color: transparent;
     border: none;
+    cursor: pointer;
     margin-top: 10px;
     margin-bottom: 16px;
     padding: 0 260px;
   }
 
   .button:hover {
-    cursor: pointer;
     text-decoration: underline;
   }
 
-  /* Works Section */
+  /* ─── Works Section ──────────────────────────────────────────────────────── */
 
   #works {
     display: flex;
@@ -897,54 +954,42 @@
     grid-gap: 142px;
   }
 
-  .works-card {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  .works-card,
+  .works-card2 {
     box-sizing: border-box;
     padding: 24px;
     gap: 46px;
     margin: 24px;
-    border: 1px solid #dfe1e6;
+    border: 1px solid var(--color-border);
     background: #fff;
     border-radius: 24px;
     height: 100%;
     width: 100%;
+    transition: box-shadow var(--transition);
   }
 
-  .works-card:hover {
-    box-shadow: 0 0 16px;
-    cursor: pointer;
-  }
-
-  .works-card img {
-    height: 448px;
-    border-radius: 8px;
+  .works-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
   }
 
   .works-card2 {
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
-    box-sizing: border-box;
-    padding: 24px;
-    gap: 46px;
-    margin: 24px;
-    border: 1px solid #dfe1e6;
-    background: #fff;
-    border-radius: 24px;
-    height: 100%;
-    width: 100%;
   }
 
+  .works-card:hover,
   .works-card2:hover {
-    box-shadow: 0 0 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
     cursor: pointer;
   }
 
+  .works-card img,
   .works-card2 img {
     height: 448px;
-    border-radius: 8px;
+    border-radius: var(--radius-btn);
   }
 
   .info-block {
@@ -980,36 +1025,36 @@
     gap: 12px;
   }
 
-  #client {
+  .client {
     width: 75px;
     font-weight: 600;
     font-size: 18px;
     line-height: 24px;
-    color: #344563;
+    color: var(--color-text-medium);
   }
 
-  #dot {
+  .dot {
     border-radius: 20px;
     width: 8px;
     height: 8px;
-    background: #c1c7d0;
+    background: var(--color-dot);
   }
 
-  #role {
+  .role {
     width: 98px;
     font-weight: 500;
     font-size: 14px;
     line-height: 24px;
-    color: #7a869a;
+    color: var(--color-text-light);
   }
 
-  #year {
+  .year {
     padding: 8px 0;
     width: 29px;
     font-weight: 500;
     font-size: 13px;
     line-height: 16px;
-    color: #7a869a;
+    color: var(--color-text-light);
   }
 
   .info-block p {
@@ -1017,7 +1062,7 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-    color: #344563;
+    color: var(--color-text-medium);
     text-align: left;
   }
 
@@ -1033,13 +1078,13 @@
 
   .tags li {
     padding: 4px 12px;
-    background: #ebebff;
-    border-radius: 8px;
+    background: var(--color-primary-bg);
+    border-radius: var(--radius-btn);
     font-weight: 500;
     font-size: 12px;
     line-height: 16px;
     letter-spacing: 0.03em;
-    color: #6070ff;
+    color: var(--color-primary);
   }
 
   .action {
@@ -1047,10 +1092,9 @@
     font-size: 17px;
     width: 124px;
     height: 48px;
-    left: 0;
-    border-radius: 8px;
-    border: 1px solid #6070ff;
-    color: #6070ff;
+    border-radius: var(--radius-btn);
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
     background-color: #fff;
     box-sizing: border-box;
     display: flex;
@@ -1059,28 +1103,29 @@
     padding: 12px;
     gap: 10px;
     margin-top: 40px;
+    cursor: pointer;
+    transition: background-color var(--transition), color var(--transition), box-shadow var(--transition);
   }
 
   .action:hover {
-    background: #6070ff;
+    background: var(--color-primary);
     box-shadow: 0 8px 16px rgba(64, 83, 252, 0.24);
-    border-radius: 8px;
     color: #fff;
   }
 
   .action:active {
-    background-color: #2230d2;
+    background-color: var(--color-primary-dark);
   }
 
-  #six {
+  .six {
     text-align: left;
   }
 
-  #eight {
+  .eight {
     text-align: left;
   }
 
-  /* About Me Section */
+  /* ─── About Me Section ───────────────────────────────────────────────────── */
 
   .abt-text h2 {
     font-weight: 700;
@@ -1088,7 +1133,7 @@
     line-height: 52px;
     display: flex;
     align-items: center;
-    color: #172b4d;
+    color: var(--color-text-dark);
     margin-bottom: 20px;
     margin-left: 142px;
     margin-top: 142px;
@@ -1100,7 +1145,7 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-    color: #344563;
+    color: var(--color-text-medium);
     margin-left: 142px;
   }
 
@@ -1118,33 +1163,34 @@
   .action2 {
     box-sizing: border-box;
     display: flex;
-    align-items: left;
+    align-items: center;
     justify-content: center;
     padding: 12px;
     gap: 10px;
     width: 168px;
     height: 48px;
-    border: 1px solid #6070ff;
-    border-radius: 8px;
+    border: 1px solid var(--color-primary);
+    border-radius: var(--radius-btn);
     margin-top: 20px;
     margin-bottom: 60px;
     margin-left: 142px;
     font-size: 17px;
     line-height: 24px;
     letter-spacing: 0.03em;
-    color: #396df2;
+    color: var(--color-primary-hover);
     background-color: #fff;
+    cursor: pointer;
+    transition: background-color var(--transition), color var(--transition), box-shadow var(--transition);
   }
 
   .action2:hover {
-    background: #6070ff;
+    background: var(--color-primary);
     box-shadow: 0 8px 16px rgba(64, 83, 252, 0.24);
-    border-radius: 8px;
     color: #fff;
   }
 
   .action2:active {
-    background-color: #2230d2;
+    background-color: var(--color-primary-dark);
   }
 
   #abt-btn {
@@ -1157,13 +1203,13 @@
     padding: 10px 0 15px;
     background-color: transparent;
     border: none;
+    cursor: pointer;
     margin-top: 10px;
     margin-bottom: 12px;
     margin-left: 142px;
   }
 
   #abt-btn:hover {
-    cursor: pointer;
     text-decoration: underline;
   }
 
@@ -1180,7 +1226,7 @@
     margin-right: 25px;
   }
 
-  /* Skills Section */
+  /* ─── Accordion / Skills (desktop) ─────────────────────────────────────────── */
 
   #block2 {
     margin-left: 37px;
@@ -1193,50 +1239,79 @@
     margin: 166px 0 36px 12px;
   }
 
-  #separation {
+  .separation {
     height: 1px;
-    background: #dfe1e6;
-    align-items: center;
-    justify-content: center;
+    background: var(--color-border);
+    width: 100%;
   }
 
-  .frameworks {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
+  .frameworks,
   .skills {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    margin: 0 0 0 12px;
   }
 
-  .arrow {
+  .accordion-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 72px;
+    cursor: pointer;
+  }
+
+  .accordion-header h3 {
+    width: 582px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    color: #000;
+  }
+
+  /* Скрываем содержимое аккордиона */
+  .accordion-section .slide {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+
+  .accordion-section.open .slide {
+    max-height: 500px;
+  }
+
+  .arrow,
+  .arrow2 {
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
     padding: 8px;
     width: 40px;
     height: 40px;
     border: none;
-    background-color: #fff;
+    background-color: transparent;
+    cursor: pointer;
+    transition: transform var(--transition);
   }
 
-  .arrow2 {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    width: 40px;
-    height: 40px;
-    border: none;
-    background-color: #fff;
-    margin-left: 15px;
+  .accordion-section.open .arrow,
+  .accordion-section.open .arrow2 {
+    transform: rotate(180deg);
   }
 
+  .arrow img,
+  .arrow2 img {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* На десктопе слайды горизонтальные */
   .slide {
     display: flex;
     flex-direction: row;
+    margin-bottom: 12px;
   }
 
   .slide img {
@@ -1249,87 +1324,21 @@
     display: flex;
     flex-direction: column;
     margin-right: 12px;
-    list-style-type: none;
-    background: #f7f7f9;
-    border-radius: 8px;
+    background: var(--color-bg-card);
+    border-radius: var(--radius-btn);
     width: 122px;
     height: 120px;
   }
 
-  li h3 {
+  .slide li h3 {
     font-weight: 500;
     font-size: 15px;
     line-height: 20px;
-    align-items: left;
-    color: #253858;
+    color: var(--color-text-label);
     margin: 16px 0 0 12px;
   }
 
-  /* Animations and transitions */
-
-  .media img:hover {
-    transform: scale(1.3);
-  }
-
-  #intro {
-    display: flex;
-  }
-
-  #intro2 {
-    display: flex;
-  }
-
-  #intro3 {
-    display: flex;
-  }
-
-  #intro h3 {
-    width: 582px;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
-    color: #000;
-  }
-
-  #intro2 h3 {
-    width: 582px;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    color: #000;
-    margin: 0 0 24px 12px;
-  }
-
-  #intro3 h3 {
-    width: 582px;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    color: #000;
-    margin: 24px 0 24px 12px;
-  }
-
-  #intro img {
-    width: 14px;
-    height: 8px;
-  }
-
-  #intro2 img {
-    width: 8px;
-    height: 14px;
-  }
-
-  #intro3 img {
-    width: 8px;
-    height: 14px;
-    margin-top: 24px;
-  }
-
-  /* Contact Section */
+  /* ─── Contact Section ────────────────────────────────────────────────────── */
 
   #contact {
     border-top-left-radius: 5.5rem;
@@ -1373,51 +1382,42 @@
     line-height: 24px;
     color: #ebebff;
     text-align: center;
+    margin-bottom: 40px;
   }
 
-  #name {
-    float: left;
-    border: 1px solid #cfd8dc;
-    border-radius: 8px;
-    width: 447px;
-    height: 48px;
-    margin-bottom: 27px;
-    padding: 15px;
-    text-transform: capitalize;
-    font-weight: 400;
-    font-size: 17px;
-    color: #172b4d;
-  }
-
-  #email {
-    float: left;
-    border: 1px solid #cfd8dc;
-    border-radius: 8px;
-    width: 447px;
-    height: 48px;
-    margin-bottom: 27px;
-    padding: 15px;
-    text-transform: capitalize;
-    font-weight: 400;
-    font-size: 17px;
-    color: #172b4d;
-  }
-
+  #name,
+  #email,
   #msg {
     float: left;
     border: 1px solid #cfd8dc;
-    border-radius: 8px;
+    border-radius: var(--radius-btn);
     width: 447px;
-    height: 170px;
     padding: 15px;
-    text-transform: capitalize;
     font-weight: 400;
     font-size: 17px;
-    color: #172b4d;
+    color: var(--color-text-dark);
+    transition: border-color var(--transition);
+  }
+
+  #name:focus,
+  #email:focus,
+  #msg:focus {
+    outline: none;
+    border-color: var(--color-primary);
+  }
+
+  #name,
+  #email {
+    height: 48px;
+    margin-bottom: 27px;
+  }
+
+  #msg {
+    height: 170px;
   }
 
   ::placeholder {
-    color: #b3bac5;
+    color: var(--color-placeholder);
     font-weight: 400;
     font-size: 15px;
   }
@@ -1430,25 +1430,26 @@
     gap: 10px;
     width: 142px;
     height: 48px;
-    border: 1px solid #6070ff;
-    border-radius: 8px;
+    border: 1px solid var(--color-primary);
+    border-radius: var(--radius-btn);
     margin-top: 27px;
     margin-bottom: 100px;
     font-size: 17px;
     line-height: 24px;
     letter-spacing: 0.03em;
-    color: #396df2;
+    color: var(--color-primary-hover);
     background-color: #fff;
+    cursor: pointer;
+    transition: background-color var(--transition), color var(--transition), box-shadow var(--transition);
   }
 
   .action-btn:hover {
     box-shadow: 0 8px 16px rgba(64, 83, 252, 0.24);
-    border-radius: 8px;
     color: #fff;
-    background-color: #2230d2;
+    background-color: var(--color-primary-dark);
   }
 
   .action-btn:active {
-    background-color: #2230d2;
+    background-color: var(--color-primary-dark);
   }
 }
