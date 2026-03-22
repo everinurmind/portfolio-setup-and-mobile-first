@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nurbol Sultanov — Portfolio</title>
+    <meta name="description" content="Nurbol Sultanov — Data Analyst specializing in SQL, Python, Tableau, Power BI and Excel.">
+    <title>Nurbol Sultanov — Data Analyst</title>
 
-    <!-- Шрифты -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-    <!-- Prism.js — подсветка синтаксиса -->
+    <!-- Prism.js syntax highlighting -->
     <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
@@ -18,31 +18,32 @@
 
 <body>
 
-<!-- Курсор-свечение -->
-<div class="cursor-glow" id="cursorGlow"></div>
+<!-- Cursor glow (desktop only) -->
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
 
-<!-- Анимированные блобы фона -->
+<!-- Animated background blobs -->
 <div class="blobs" aria-hidden="true">
     <div class="blob blob--1"></div>
     <div class="blob blob--2"></div>
     <div class="blob blob--3"></div>
 </div>
 
-<!-- ─── Шапка ─── -->
+<!-- ─── Header ─── -->
 <header class="header" id="header">
     <nav class="nav container">
-        <a href="#" class="nav__logo">NS<span class="accent">.</span></a>
+        <a href="#hero" class="nav__logo">NS<span class="accent">.</span></a>
 
-        <ul class="nav__menu" id="navMenu">
-            <li><a href="#hero" class="nav__link active" data-section="hero">Home</a></li>
+        <ul class="nav__menu" id="navMenu" role="list">
+            <li><a href="#hero"     class="nav__link active" data-section="hero">Home</a></li>
             <li><a href="#projects" class="nav__link" data-section="projects">Projects</a></li>
-            <li><a href="#skills" class="nav__link" data-section="skills">Skills</a></li>
-            <li><a href="#code" class="nav__link" data-section="code">Code</a></li>
-            <li><a href="#about" class="nav__link" data-section="about">About</a></li>
-            <li><a href="#contact" class="nav__link" data-section="contact">Contact</a></li>
+            <li><a href="#skills"   class="nav__link" data-section="skills">Skills</a></li>
+            <li><a href="#code"     class="nav__link" data-section="code">Code</a></li>
+            <li><a href="#about"    class="nav__link" data-section="about">About</a></li>
+            <li><a href="#contact"  class="nav__link" data-section="contact">Contact</a></li>
         </ul>
 
-        <button class="hamburger" id="hamburger" type="button" aria-label="Toggle navigation" aria-expanded="false">
+        <button class="hamburger" id="hamburger" type="button"
+                aria-label="Toggle navigation" aria-expanded="false" aria-controls="navMenu">
             <span class="hamburger__bar"></span>
             <span class="hamburger__bar"></span>
             <span class="hamburger__bar"></span>
@@ -50,283 +51,419 @@
     </nav>
 </header>
 
-<!-- ─── Герой ─── -->
+<!-- ─── Hero ─── -->
 <section class="hero" id="hero">
-    <div class="hero__content container fade-in">
-        <p class="hero__greeting">Hello, I'm</p>
-        <h1 class="hero__name">Nurbol Sultanov</h1>
-        <p class="hero__role">
-            <span class="typewriter" id="typewriter"></span><span class="typewriter__cursor">|</span>
-        </p>
-        <p class="hero__desc">Turning raw data into actionable insights and building intelligent solutions.</p>
-        <div class="hero__buttons">
-            <a href="#projects" class="btn btn--primary">View Projects</a>
-            <a href="#contact" class="btn btn--outline">Get in Touch</a>
+    <div class="container hero__inner">
+        <div class="hero__content fade-in">
+            <p class="hero__greeting">👋 Hello, I'm</p>
+            <h1 class="hero__name">Nurbol Sultanov</h1>
+            <p class="hero__role">
+                <span class="typewriter" id="typewriter"></span><span class="typewriter__cursor" aria-hidden="true">|</span>
+            </p>
+            <p class="hero__desc">
+                Turning raw data into clear, actionable insights that drive business decisions.
+                Specialized in SQL, Python, Power BI, and Tableau.
+            </p>
+            <div class="hero__buttons">
+                <a href="#projects" class="btn btn--primary">View My Work</a>
+                <a href="https://github.com/everinurmind/" class="btn btn--outline" target="_blank" rel="noopener">
+                    <svg class="btn__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                    GitHub
+                </a>
+            </div>
+            <div class="hero__scroll" aria-label="Scroll down">
+                <div class="scroll-indicator"></div>
+            </div>
+        </div>
+
+        <!-- Desktop decorative data visual -->
+        <div class="hero__visual" aria-hidden="true">
+            <div class="data-visual">
+                <div class="dv-bar" style="--h:62%; --d:0s"></div>
+                <div class="dv-bar" style="--h:84%; --d:.15s"></div>
+                <div class="dv-bar" style="--h:47%; --d:.3s"></div>
+                <div class="dv-bar" style="--h:91%; --d:.45s"></div>
+                <div class="dv-bar" style="--h:73%; --d:.6s"></div>
+                <div class="dv-bar" style="--h:55%; --d:.75s"></div>
+                <div class="dv-bar" style="--h:78%; --d:.9s"></div>
+            </div>
+            <div class="dv-line">
+                <svg viewBox="0 0 280 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <polyline points="0,60 40,45 80,50 120,25 160,35 200,15 240,20 280,8"
+                              stroke="url(#lineGrad)" stroke-width="2.5" stroke-linecap="round"
+                              stroke-linejoin="round" fill="none"/>
+                    <defs>
+                        <linearGradient id="lineGrad" x1="0" y1="0" x2="280" y2="0" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#6366f1"/>
+                            <stop offset="100%" stop-color="#22d3ee"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <div class="dv-label">Quarterly Revenue Growth ↑ 23%</div>
         </div>
     </div>
 </section>
 
-<!-- ─── Статистика ─── -->
-<section class="stats fade-in">
+<!-- ─── Stats ─── -->
+<section class="stats" aria-label="Key metrics">
     <div class="container stats__grid">
-        <div class="stats__card glass">
-            <span class="stats__number" data-target="5">0</span>
-            <span class="stats__suffix">+</span>
+        <div class="stats__card glass fade-in">
+            <span class="stats__number" data-target="10">0</span><span class="stats__suffix">+</span>
             <p class="stats__label">Projects Completed</p>
         </div>
-        <div class="stats__card glass">
-            <span class="stats__number" data-target="20">0</span>
-            <span class="stats__suffix">+</span>
-            <p class="stats__label">Technologies Used</p>
+        <div class="stats__card glass fade-in">
+            <span class="stats__number" data-target="50">0</span><span class="stats__suffix">+</span>
+            <p class="stats__label">SQL Queries Written</p>
         </div>
-        <div class="stats__card glass">
-            <span class="stats__number" data-target="3">0</span>
-            <span class="stats__suffix">+</span>
-            <p class="stats__label">Years Learning</p>
+        <div class="stats__card glass fade-in">
+            <span class="stats__number" data-target="8">0</span><span class="stats__suffix">+</span>
+            <p class="stats__label">Dashboards Built</p>
         </div>
-        <div class="stats__card glass">
-            <span class="stats__number" data-target="87">0</span>
-            <span class="stats__suffix">%</span>
-            <p class="stats__label">Code Quality</p>
+        <div class="stats__card glass fade-in">
+            <span class="stats__number" data-target="3">0</span><span class="stats__suffix">+</span>
+            <p class="stats__label">Years of Experience</p>
         </div>
     </div>
 </section>
 
-<!-- ─── Проекты ─── -->
+<!-- ─── Projects ─── -->
 <section class="projects" id="projects">
     <div class="container">
         <h2 class="section__title fade-in">Featured Projects</h2>
-        <div class="projects__grid">
+        <p class="section__subtitle fade-in">End-to-end data solutions — from raw data to actionable insights</p>
 
-            <div class="project-card glass fade-in" data-modal="modal1">
-                <div class="project-card__img">
-                    <div class="project-card__icon">📊</div>
-                    <div class="project-card__overlay">
-                        <span>View Details</span>
+        <!-- Filter buttons -->
+        <div class="project-filters fade-in" role="group" aria-label="Filter projects by technology">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="sql">SQL</button>
+            <button class="filter-btn" data-filter="python">Python</button>
+            <button class="filter-btn" data-filter="powerbi">Power BI</button>
+            <button class="filter-btn" data-filter="tableau">Tableau</button>
+        </div>
+
+        <div class="projects__grid" id="projectsGrid">
+
+            <!-- Project 1: Sales Dashboard -->
+            <article class="project-card glass fade-in" data-tags="powerbi sql excel">
+                <div class="project-card__header project-card__header--blue">
+                    <span class="project-card__icon">📊</span>
+                    <div class="project-card__badges">
+                        <span class="badge badge--powerbi">Power BI</span>
+                        <span class="badge badge--sql">SQL</span>
                     </div>
                 </div>
                 <div class="project-card__body">
-                    <h3>Sales Dashboard</h3>
-                    <p>Interactive Power BI dashboard analyzing regional sales trends.</p>
-                    <ul class="project-card__tags">
-                        <li>Power BI</li><li>SQL</li><li>DAX</li>
+                    <h3 class="project-card__title">Sales Performance Dashboard</h3>
+                    <p class="project-card__desc">
+                        Interactive Power BI dashboard tracking regional sales KPIs, YoY growth, and product performance. Features DAX measures, drill-through pages, and dynamic slicers.
+                    </p>
+                    <ul class="project-card__tags" aria-label="Technologies used">
+                        <li>Power BI</li><li>SQL</li><li>DAX</li><li>Excel</li>
                     </ul>
+                    <div class="project-card__links">
+                        <a href="https://github.com/everinurmind/sales-dashboard" target="_blank" rel="noopener" class="btn btn--small btn--outline">
+                            <svg class="btn__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                            GitHub
+                        </a>
+                    </div>
                 </div>
-            </div>
+            </article>
 
-            <div class="project-card glass fade-in" data-modal="modal2">
-                <div class="project-card__img">
-                    <div class="project-card__icon">🤖</div>
-                    <div class="project-card__overlay">
-                        <span>View Details</span>
+            <!-- Project 2: Churn Prediction -->
+            <article class="project-card glass fade-in" data-tags="python sql">
+                <div class="project-card__header project-card__header--purple">
+                    <span class="project-card__icon">🤖</span>
+                    <div class="project-card__badges">
+                        <span class="badge badge--python">Python</span>
+                        <span class="badge badge--sql">SQL</span>
                     </div>
                 </div>
                 <div class="project-card__body">
-                    <h3>ML Pipeline</h3>
-                    <p>End-to-end machine learning pipeline for churn prediction.</p>
-                    <ul class="project-card__tags">
-                        <li>Python</li><li>Scikit-learn</li><li>Pandas</li>
+                    <h3 class="project-card__title">Customer Churn Prediction</h3>
+                    <p class="project-card__desc">
+                        End-to-end ML pipeline predicting customer churn with 89% accuracy. Includes feature engineering, SMOTE for class imbalance, and a REST API for real-time scoring.
+                    </p>
+                    <ul class="project-card__tags" aria-label="Technologies used">
+                        <li>Python</li><li>Scikit-learn</li><li>Pandas</li><li>SQL</li>
                     </ul>
+                    <div class="project-card__links">
+                        <a href="https://github.com/everinurmind/churn-prediction" target="_blank" rel="noopener" class="btn btn--small btn--outline">
+                            <svg class="btn__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                            GitHub
+                        </a>
+                    </div>
                 </div>
-            </div>
+            </article>
 
-            <div class="project-card glass fade-in" data-modal="modal3">
-                <div class="project-card__img">
-                    <div class="project-card__icon">⚙️</div>
-                    <div class="project-card__overlay">
-                        <span>View Details</span>
+            <!-- Project 3: RFM Segmentation -->
+            <article class="project-card glass fade-in" data-tags="python tableau sql">
+                <div class="project-card__header project-card__header--teal">
+                    <span class="project-card__icon">🎯</span>
+                    <div class="project-card__badges">
+                        <span class="badge badge--tableau">Tableau</span>
+                        <span class="badge badge--python">Python</span>
                     </div>
                 </div>
                 <div class="project-card__body">
-                    <h3>ETL Automation</h3>
-                    <p>Automated data extraction and transformation pipeline.</p>
-                    <ul class="project-card__tags">
-                        <li>Python</li><li>SQL</li><li>Airflow</li>
+                    <h3 class="project-card__title">RFM Customer Segmentation</h3>
+                    <p class="project-card__desc">
+                        Python-driven RFM analysis segmenting 50K+ customers into behavioral cohorts, visualized in Tableau. Helped marketing increase email CTR by 34%.
+                    </p>
+                    <ul class="project-card__tags" aria-label="Technologies used">
+                        <li>Tableau</li><li>Python</li><li>SQL</li><li>Pandas</li>
                     </ul>
+                    <div class="project-card__links">
+                        <a href="https://github.com/everinurmind/customer-segmentation" target="_blank" rel="noopener" class="btn btn--small btn--outline">
+                            <svg class="btn__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                            GitHub
+                        </a>
+                        <a href="#" class="btn btn--small btn--primary">Tableau Public</a>
+                    </div>
                 </div>
-            </div>
+            </article>
 
-            <div class="project-card glass fade-in" data-modal="modal4">
-                <div class="project-card__img">
-                    <div class="project-card__icon">📈</div>
-                    <div class="project-card__overlay">
-                        <span>View Details</span>
+            <!-- Project 4: ETL Pipeline -->
+            <article class="project-card glass fade-in" data-tags="python sql">
+                <div class="project-card__header project-card__header--green">
+                    <span class="project-card__icon">⚡</span>
+                    <div class="project-card__badges">
+                        <span class="badge badge--python">Python</span>
+                        <span class="badge badge--sql">SQL</span>
                     </div>
                 </div>
                 <div class="project-card__body">
-                    <h3>Tableau Analytics</h3>
-                    <p>Customer segmentation visualizations with Tableau.</p>
-                    <ul class="project-card__tags">
-                        <li>Tableau</li><li>SQL</li><li>Python</li>
+                    <h3 class="project-card__title">Automated ETL Pipeline</h3>
+                    <p class="project-card__desc">
+                        Scalable ETL pipeline pulling data from REST APIs and CSVs, transforming with pandas, and loading into PostgreSQL. Orchestrated with Apache Airflow on a daily schedule.
+                    </p>
+                    <ul class="project-card__tags" aria-label="Technologies used">
+                        <li>Python</li><li>Airflow</li><li>PostgreSQL</li><li>pandas</li>
                     </ul>
+                    <div class="project-card__links">
+                        <a href="https://github.com/everinurmind/etl-pipeline" target="_blank" rel="noopener" class="btn btn--small btn--outline">
+                            <svg class="btn__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                            GitHub
+                        </a>
+                    </div>
                 </div>
-            </div>
+            </article>
 
+            <!-- Project 5: COVID Analysis -->
+            <article class="project-card glass fade-in" data-tags="python">
+                <div class="project-card__header project-card__header--orange">
+                    <span class="project-card__icon">📈</span>
+                    <div class="project-card__badges">
+                        <span class="badge badge--python">Python</span>
+                    </div>
+                </div>
+                <div class="project-card__body">
+                    <h3 class="project-card__title">COVID-19 Global Analysis</h3>
+                    <p class="project-card__desc">
+                        Exploratory data analysis of global COVID-19 trends using Python. Tracks vaccination rates, case fatality ratios, and healthcare capacity across 150+ countries.
+                    </p>
+                    <ul class="project-card__tags" aria-label="Technologies used">
+                        <li>Python</li><li>Pandas</li><li>Matplotlib</li><li>Seaborn</li>
+                    </ul>
+                    <div class="project-card__links">
+                        <a href="https://github.com/everinurmind/covid-analysis" target="_blank" rel="noopener" class="btn btn--small btn--outline">
+                            <svg class="btn__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Project 6: E-Commerce SQL Analysis -->
+            <article class="project-card glass fade-in" data-tags="sql excel powerbi">
+                <div class="project-card__header project-card__header--pink">
+                    <span class="project-card__icon">🛒</span>
+                    <div class="project-card__badges">
+                        <span class="badge badge--sql">SQL</span>
+                        <span class="badge badge--excel">Excel</span>
+                    </div>
+                </div>
+                <div class="project-card__body">
+                    <h3 class="project-card__title">E-Commerce Revenue Analysis</h3>
+                    <p class="project-card__desc">
+                        Deep SQL analysis of 2M+ order records with cohort retention, basket analysis, and seasonality trends. Power BI report delivered to C-suite stakeholders.
+                    </p>
+                    <ul class="project-card__tags" aria-label="Technologies used">
+                        <li>SQL</li><li>Excel</li><li>Power BI</li><li>Python</li>
+                    </ul>
+                    <div class="project-card__links">
+                        <a href="https://github.com/everinurmind/ecommerce-analysis" target="_blank" rel="noopener" class="btn btn--small btn--outline">
+                            <svg class="btn__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+
+        <div class="projects__more fade-in">
+            <a href="https://github.com/everinurmind/" target="_blank" rel="noopener" class="btn btn--outline">
+                View All on GitHub →
+            </a>
         </div>
     </div>
 </section>
 
-<!-- Модальные окна проектов -->
-<div class="modal" id="modal1" aria-hidden="true">
-    <div class="modal__backdrop"></div>
-    <div class="modal__content glass">
-        <button class="modal__close" aria-label="Close modal">&times;</button>
-        <h3>Sales Dashboard</h3>
-        <p>An interactive Power BI dashboard that tracks regional sales performance, identifies trends, and enables data-driven decision making. Features drill-through pages, dynamic filters, and DAX measures for KPI calculations.</p>
-        <ul class="project-card__tags"><li>Power BI</li><li>SQL</li><li>DAX</li></ul>
-        <a href="#" class="btn btn--primary" style="margin-top:1.5rem">Live Demo</a>
-    </div>
-</div>
-<div class="modal" id="modal2" aria-hidden="true">
-    <div class="modal__backdrop"></div>
-    <div class="modal__content glass">
-        <button class="modal__close" aria-label="Close modal">&times;</button>
-        <h3>ML Pipeline</h3>
-        <p>End-to-end machine learning pipeline for customer churn prediction. Includes data preprocessing, feature engineering, model training with cross-validation, and deployment via REST API.</p>
-        <ul class="project-card__tags"><li>Python</li><li>Scikit-learn</li><li>Pandas</li></ul>
-        <a href="#" class="btn btn--primary" style="margin-top:1.5rem">View Code</a>
-    </div>
-</div>
-<div class="modal" id="modal3" aria-hidden="true">
-    <div class="modal__backdrop"></div>
-    <div class="modal__content glass">
-        <button class="modal__close" aria-label="Close modal">&times;</button>
-        <h3>ETL Automation</h3>
-        <p>Automated ETL pipeline that extracts data from multiple sources, applies cleaning and transformations, and loads it into a data warehouse. Orchestrated with Apache Airflow for scheduled runs.</p>
-        <ul class="project-card__tags"><li>Python</li><li>SQL</li><li>Airflow</li></ul>
-        <a href="#" class="btn btn--primary" style="margin-top:1.5rem">View Code</a>
-    </div>
-</div>
-<div class="modal" id="modal4" aria-hidden="true">
-    <div class="modal__backdrop"></div>
-    <div class="modal__content glass">
-        <button class="modal__close" aria-label="Close modal">&times;</button>
-        <h3>Tableau Analytics</h3>
-        <p>Customer segmentation analysis using RFM methodology, visualized through interactive Tableau dashboards. Enables marketing teams to target specific customer groups with tailored campaigns.</p>
-        <ul class="project-card__tags"><li>Tableau</li><li>SQL</li><li>Python</li></ul>
-        <a href="#" class="btn btn--primary" style="margin-top:1.5rem">Live Demo</a>
-    </div>
-</div>
-
-<!-- ─── Навыки ─── -->
+<!-- ─── Skills ─── -->
 <section class="skills" id="skills">
     <div class="container">
-        <h2 class="section__title fade-in">Skills & Expertise</h2>
-        <div class="skills__grid fade-in">
+        <h2 class="section__title fade-in">Skills &amp; Tools</h2>
+        <p class="section__subtitle fade-in">The full analytics stack — from data extraction to storytelling</p>
 
-            <div class="skill">
-                <div class="skill__header">
-                    <span class="skill__name">SQL</span>
-                    <span class="skill__percent">90%</span>
+        <div class="skills__grid">
+
+            <div class="skill-category glass fade-in">
+                <div class="skill-category__header">
+                    <span class="skill-category__icon">🗃️</span>
+                    <h3 class="skill-category__title">Data &amp; Analytics</h3>
                 </div>
-                <div class="skill__track">
-                    <div class="skill__bar" data-width="90"></div>
+                <div class="skill-tags">
+                    <span class="skill-tag skill-tag--expert">SQL</span>
+                    <span class="skill-tag skill-tag--expert">Excel</span>
+                    <span class="skill-tag skill-tag--advanced">Power BI</span>
+                    <span class="skill-tag skill-tag--advanced">DAX</span>
+                    <span class="skill-tag skill-tag--advanced">Tableau</span>
+                    <span class="skill-tag skill-tag--proficient">Google Analytics</span>
+                    <span class="skill-tag skill-tag--proficient">Looker Studio</span>
                 </div>
             </div>
 
-            <div class="skill">
-                <div class="skill__header">
-                    <span class="skill__name">Python</span>
-                    <span class="skill__percent">85%</span>
+            <div class="skill-category glass fade-in">
+                <div class="skill-category__header">
+                    <span class="skill-category__icon">🐍</span>
+                    <h3 class="skill-category__title">Programming</h3>
                 </div>
-                <div class="skill__track">
-                    <div class="skill__bar" data-width="85"></div>
-                </div>
-            </div>
-
-            <div class="skill">
-                <div class="skill__header">
-                    <span class="skill__name">Tableau</span>
-                    <span class="skill__percent">80%</span>
-                </div>
-                <div class="skill__track">
-                    <div class="skill__bar" data-width="80"></div>
+                <div class="skill-tags">
+                    <span class="skill-tag skill-tag--advanced">Python</span>
+                    <span class="skill-tag skill-tag--advanced">Pandas</span>
+                    <span class="skill-tag skill-tag--advanced">NumPy</span>
+                    <span class="skill-tag skill-tag--advanced">Matplotlib</span>
+                    <span class="skill-tag skill-tag--proficient">Seaborn</span>
+                    <span class="skill-tag skill-tag--proficient">Scikit-learn</span>
+                    <span class="skill-tag skill-tag--proficient">Jupyter</span>
                 </div>
             </div>
 
-            <div class="skill">
-                <div class="skill__header">
-                    <span class="skill__name">Power BI</span>
-                    <span class="skill__percent">75%</span>
+            <div class="skill-category glass fade-in">
+                <div class="skill-category__header">
+                    <span class="skill-category__icon">🔧</span>
+                    <h3 class="skill-category__title">Data Engineering</h3>
                 </div>
-                <div class="skill__track">
-                    <div class="skill__bar" data-width="75"></div>
-                </div>
-            </div>
-
-            <div class="skill">
-                <div class="skill__header">
-                    <span class="skill__name">Excel</span>
-                    <span class="skill__percent">95%</span>
-                </div>
-                <div class="skill__track">
-                    <div class="skill__bar" data-width="95"></div>
-                </div>
-            </div>
-
-            <div class="skill">
-                <div class="skill__header">
-                    <span class="skill__name">Pandas</span>
-                    <span class="skill__percent">80%</span>
-                </div>
-                <div class="skill__track">
-                    <div class="skill__bar" data-width="80"></div>
+                <div class="skill-tags">
+                    <span class="skill-tag skill-tag--advanced">PostgreSQL</span>
+                    <span class="skill-tag skill-tag--advanced">MySQL</span>
+                    <span class="skill-tag skill-tag--proficient">ETL Pipelines</span>
+                    <span class="skill-tag skill-tag--proficient">Apache Airflow</span>
+                    <span class="skill-tag skill-tag--proficient">Git / GitHub</span>
+                    <span class="skill-tag skill-tag--learning">dbt</span>
+                    <span class="skill-tag skill-tag--learning">BigQuery</span>
                 </div>
             </div>
 
         </div>
+
+        <!-- Level legend -->
+        <div class="skills__legend fade-in" aria-label="Skill level legend">
+            <span><span class="skill-tag skill-tag--expert">Expert</span></span>
+            <span><span class="skill-tag skill-tag--advanced">Advanced</span></span>
+            <span><span class="skill-tag skill-tag--proficient">Proficient</span></span>
+            <span><span class="skill-tag skill-tag--learning">Learning</span></span>
+        </div>
     </div>
 </section>
 
-<!-- ─── Демо кода ─── -->
+<!-- ─── Code Showcase ─── -->
 <section class="code-showcase" id="code">
     <div class="container">
         <h2 class="section__title fade-in">Code Showcase</h2>
+        <p class="section__subtitle fade-in">Real queries and scripts from my analytics work</p>
+
         <div class="code-showcase__wrapper glass fade-in">
-
-            <div class="code-tabs">
-                <button class="code-tab active" data-lang="js">JavaScript</button>
-                <button class="code-tab" data-lang="python">Python</button>
+            <div class="code-tabs" role="tablist" aria-label="Code language">
+                <button class="code-tab active" data-lang="sql" role="tab" aria-selected="true">SQL</button>
+                <button class="code-tab" data-lang="python" role="tab" aria-selected="false">Python</button>
             </div>
 
-            <div class="code-panel" id="code-js">
-<pre><code class="language-javascript">// Анализ массива данных
-const data = [12, 45, 7, 23, 56, 89, 34];
-
-const stats = {
-  mean: data.reduce((a, b) => a + b) / data.length,
-  max: Math.max(...data),
-  min: Math.min(...data),
-};
-
-console.log(`Mean: ${stats.mean.toFixed(2)}`);
-console.log(`Max: ${stats.max}, Min: ${stats.min}`);</code></pre>
+            <div class="code-panel" id="code-sql" role="tabpanel">
+<pre><code class="language-sql">-- Monthly Cohort Retention Analysis
+WITH first_purchase AS (
+    SELECT
+        customer_id,
+        DATE_TRUNC('month', MIN(purchase_date)) AS cohort_month
+    FROM orders
+    GROUP BY customer_id
+),
+monthly_activity AS (
+    SELECT
+        o.customer_id,
+        fp.cohort_month,
+        DATEDIFF('month', fp.cohort_month,
+                 DATE_TRUNC('month', o.purchase_date)) AS month_index
+    FROM orders o
+    JOIN first_purchase fp ON o.customer_id = fp.customer_id
+)
+SELECT
+    cohort_month,
+    month_index,
+    COUNT(DISTINCT customer_id)                           AS active_users,
+    ROUND(
+        COUNT(DISTINCT customer_id) * 100.0
+        / FIRST_VALUE(COUNT(DISTINCT customer_id))
+              OVER (PARTITION BY cohort_month
+                    ORDER BY month_index), 2
+    )                                                     AS retention_rate
+FROM monthly_activity
+GROUP BY cohort_month, month_index
+ORDER BY cohort_month, month_index;</code></pre>
             </div>
 
-            <div class="code-panel hidden" id="code-python">
-<pre><code class="language-python"># Анализ данных с помощью pandas
-import pandas as pd
+            <div class="code-panel hidden" id="code-python" role="tabpanel">
+<pre><code class="language-python">import pandas as pd
+import numpy as np
 
-data = [12, 45, 7, 23, 56, 89, 34]
-series = pd.Series(data)
+# ── RFM Customer Segmentation ──────────────────────────
+df = pd.read_csv('transactions.csv', parse_dates=['date'])
+snapshot = df['date'].max() + pd.Timedelta(days=1)
 
-print(f"Mean: {series.mean():.2f}")
-print(f"Max: {series.max()}, Min: {series.min()}")</code></pre>
+rfm = df.groupby('customer_id').agg(
+    recency  =('date',     lambda x: (snapshot - x.max()).days),
+    frequency=('order_id', 'nunique'),
+    monetary =('revenue',  'sum')
+).reset_index()
+
+# Score each dimension 1–4 (4 = best)
+rfm['R'] = pd.qcut(rfm['recency'],  4, labels=[4,3,2,1]).astype(int)
+rfm['F'] = pd.qcut(rfm['frequency'].rank(method='first'),
+                   4, labels=[1,2,3,4]).astype(int)
+rfm['M'] = pd.qcut(rfm['monetary'], 4, labels=[1,2,3,4]).astype(int)
+rfm['rfm_score'] = rfm['R']*100 + rfm['F']*10 + rfm['M']
+
+segments = {(4,4,4): 'Champions', (3,4,4): 'Loyal',
+            (4,1,1): 'Recent',    (1,1,1): 'Lost'}
+
+print(rfm[['customer_id','recency','frequency','monetary','rfm_score']].head())
+print(f"\nChampions: {(rfm['rfm_score'] >= 400).sum()} customers")</code></pre>
             </div>
 
             <div class="code-actions">
-                <button class="btn btn--small" id="copyBtn">Copy</button>
-                <button class="btn btn--small btn--primary" id="runBtn">Run ▶</button>
+                <button class="btn btn--small" id="copyBtn" type="button">Copy</button>
+                <button class="btn btn--small btn--primary" id="runBtn" type="button">Run ▶</button>
             </div>
 
-            <div class="code-output hidden" id="codeOutput">
+            <div class="code-output hidden" id="codeOutput" aria-live="polite">
                 <pre id="codeOutputText"></pre>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ─── Обо мне ─── -->
+<!-- ─── About ─── -->
 <section class="about" id="about">
     <div class="container about__grid fade-in">
         <div class="about__avatar">
@@ -336,57 +473,66 @@ print(f"Max: {series.max()}, Min: {series.min()}")</code></pre>
         </div>
         <div class="about__text">
             <h2 class="section__title">About Me</h2>
-            <p>I'm a passionate Data Analyst and Python Developer based in Kazakhstan. I love transforming complex datasets into clear, actionable insights that drive business decisions.</p>
-            <p>With experience in SQL, Python, Tableau, and Power BI, I build end-to-end data solutions — from ETL pipelines to interactive dashboards and machine learning models.</p>
+            <p>I'm a Data Analyst based in Kazakhstan, passionate about transforming complex datasets into clear, compelling narratives that drive real business impact.</p>
+            <p>My stack covers the full analytics pipeline — writing optimized SQL queries, building Python automation, crafting Tableau and Power BI dashboards, and presenting findings to stakeholders at all levels.</p>
+            <p>Currently open to new opportunities in data analytics, BI development, and data engineering.</p>
             <div class="about__links">
-                <a href="https://github.com/everinurmind/" class="btn btn--outline" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://github.com/everinurmind/" class="btn btn--primary" target="_blank" rel="noopener">GitHub Profile</a>
                 <a href="https://www.linkedin.com/in/everinurmind/" class="btn btn--outline" target="_blank" rel="noopener">LinkedIn</a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ─── Контакт ─── -->
+<!-- ─── Contact ─── -->
 <section class="contact" id="contact">
     <div class="container">
         <h2 class="section__title fade-in">Get in Touch</h2>
-        <p class="contact__subtitle fade-in">Have a project in mind? Let's talk about it.</p>
+        <p class="section__subtitle fade-in">Have a project in mind or want to talk data? I'd love to hear from you.</p>
+
         <form class="contact__form glass fade-in" id="contactForm" novalidate>
             <div class="form-group">
-                <input type="text" id="name" name="name" placeholder=" " required maxlength="50">
+                <input type="text" id="name" name="name" placeholder=" " required maxlength="50" autocomplete="name">
                 <label for="name">Full Name</label>
-                <span class="form-error" id="nameError"></span>
+                <span class="form-error" id="nameError" role="alert"></span>
             </div>
             <div class="form-group">
-                <input type="email" id="email" name="email" placeholder=" " required>
-                <label for="email">Email</label>
-                <span class="form-error" id="emailError"></span>
+                <input type="email" id="email" name="email" placeholder=" " required autocomplete="email">
+                <label for="email">Email Address</label>
+                <span class="form-error" id="emailError" role="alert"></span>
             </div>
             <div class="form-group">
                 <textarea id="message" name="message" rows="5" placeholder=" " required maxlength="500"></textarea>
                 <label for="message">Message</label>
-                <span class="form-error" id="messageError"></span>
+                <span class="form-error" id="messageError" role="alert"></span>
             </div>
             <button type="submit" class="btn btn--primary btn--full">Send Message</button>
         </form>
     </div>
 </section>
 
-<!-- ─── Подвал ─── -->
+<!-- ─── Footer ─── -->
 <footer class="footer">
     <div class="container footer__inner">
         <p>&copy; 2026 Nurbol Sultanov. All rights reserved.</p>
         <div class="footer__socials">
-            <a href="https://github.com/everinurmind/" target="_blank" rel="noopener" aria-label="GitHub">GH</a>
-            <a href="https://www.linkedin.com/in/everinurmind/" target="_blank" rel="noopener" aria-label="LinkedIn">LI</a>
-            <a href="https://twitter.com/everinurmind/" target="_blank" rel="noopener" aria-label="Twitter">TW</a>
+            <a href="https://github.com/everinurmind/" target="_blank" rel="noopener" aria-label="GitHub profile">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/everinurmind/" target="_blank" rel="noopener" aria-label="LinkedIn profile">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="https://twitter.com/everinurmind/" target="_blank" rel="noopener" aria-label="Twitter profile">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
         </div>
     </div>
 </footer>
 
-<!-- Prism.js — подсветка синтаксиса -->
+<!-- Prism.js -->
 <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-sql.min.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
