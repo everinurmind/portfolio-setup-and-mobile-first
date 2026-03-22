@@ -194,24 +194,26 @@ const codeOutput    = document.getElementById('codeOutput');
 const codeOutputText = document.getElementById('codeOutputText');
 
 const mockOutputs = {
-    sql: `cohort_month | month_index | active_users | retention_rate
--------------|-------------|--------------|---------------
-2024-01-01   |      0      |     1 234    |     100.00
-2024-01-01   |      1      |       876    |      71.00
-2024-01-01   |      2      |       654    |      53.00
-2024-02-01   |      0      |     1 456    |     100.00
-2024-02-01   |      1      |       987    |      67.79
+    sql: `-- Top 5 posts by engagement rate
+ post_id | platform  | post_type | likes | comments | shares | eng_rate
+---------+-----------+-----------+-------+----------+--------+---------
+    2847 | Instagram | Reel      |  4821 |      312 |    987 |   12.84
+    1093 | TikTok    | Video     |  9234 |      874 |   2341 |   11.67
+    3312 | Instagram | Carousel  |  3102 |      498 |    654 |    9.43
+    0718 | YouTube   | Short     |  6780 |      231 |   1102 |    8.91
+    2201 | Instagram | Image     |  2934 |      187 |    423 |    7.56
 
-Query executed in 0.43 s — 4 rows returned`,
+(5 rows)  Query time: 0.18 s`,
 
-    python: `   customer_id  recency  frequency   monetary  rfm_score
-0        10 001       12          8   4 521.50        443
-1        10 002       45          3     892.00        232
-2        10 003        3         15  12 340.80        444
-3        10 004      120          1     124.50        111
-4        10 005       67          5   2 341.00        323
+    python: `   category       revenue   orders  avg_order  mom_growth
+0  Electronics   142350.80    1832     77.70       +8.3%
+1  Clothing       98721.45    3210     30.75       +2.1%
+2  Home & Garden  67432.10    1045     64.53      -1.4%
+3  Books          23891.60    2987      7.99       +5.7%
+4  Sports         54109.30     876     61.77      +12.0%
 
-Champions: 312 customers`,
+Peak month: November  |  Top category: Electronics
+Seasonality index (Dec): 1.47  →  strong holiday spike`,
 };
 
 if (runBtn) {
@@ -292,12 +294,15 @@ sections.forEach((section) => {
 });
 
 // ═══════════════════════════════════════
-// CONTACT FORM VALIDATION
+// CONTACT FORM — Formspree
+// TODO: replace YOUR_FORM_ID with actual Formspree form ID after signup at formspree.io
 // ═══════════════════════════════════════
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID'; // placeholder
+
 const contactForm = document.getElementById('contactForm');
 
 if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         const name    = document.getElementById('name');
@@ -308,6 +313,7 @@ if (contactForm) {
         const msgErr  = document.getElementById('messageError');
         let valid = true;
 
+        // Client-side validation
         if (name.value.trim().length < 2) {
             nameErr.textContent = 'Please enter your full name (min 2 characters).';
             valid = false;
@@ -323,15 +329,36 @@ if (contactForm) {
             valid = false;
         } else { msgErr.textContent = ''; }
 
-        if (valid) {
-            const btn = contactForm.querySelector('[type="submit"]');
-            btn.textContent = 'Message Sent ✓';
-            btn.disabled = true;
-            setTimeout(() => {
+        if (!valid) return;
+
+        const btn = contactForm.querySelector('[type="submit"]');
+        btn.textContent = 'Sending…';
+        btn.disabled = true;
+
+        try {
+            const res = await fetch(FORMSPREE_ENDPOINT, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify({
+                    name: name.value.trim(),
+                    email: email.value.trim(),
+                    message: message.value.trim(),
+                }),
+            });
+
+            if (res.ok) {
+                btn.textContent = 'Message sent! I\'ll get back to you soon.';
                 contactForm.reset();
-                btn.textContent = 'Send Message';
-                btn.disabled = false;
-            }, 3500);
+                setTimeout(() => {
+                    btn.textContent = 'Send Message';
+                    btn.disabled = false;
+                }, 4000);
+            } else {
+                throw new Error('Server error');
+            }
+        } catch {
+            btn.textContent = 'Something went wrong. Please email me directly.';
+            btn.disabled = false;
         }
     });
 }
