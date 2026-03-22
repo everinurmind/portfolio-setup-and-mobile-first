@@ -1,6 +1,3 @@
-// ═══════════════════════════════════════
-// CURSOR GLOW (desktop only)
-// ═══════════════════════════════════════
 const cursorGlow = document.getElementById('cursorGlow');
 
 if (window.matchMedia('(pointer: fine)').matches) {
@@ -14,9 +11,6 @@ if (window.matchMedia('(pointer: fine)').matches) {
     });
 }
 
-// ═══════════════════════════════════════
-// MOBILE NAV
-// ═══════════════════════════════════════
 const hamburger = document.getElementById('hamburger');
 const navMenu   = document.getElementById('navMenu');
 
@@ -38,7 +32,6 @@ function closeNav() {
     document.body.style.overflow = '';
 }
 
-// Close on outside click
 document.addEventListener('click', (e) => {
     if (navMenu.classList.contains('open') &&
         !navMenu.contains(e.target) &&
@@ -47,9 +40,6 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// ═══════════════════════════════════════
-// TYPEWRITER
-// ═══════════════════════════════════════
 const typewriterEl = document.getElementById('typewriter');
 const roles = ['Data Analyst', 'SQL Developer', 'BI Developer', 'Python Developer'];
 let roleIndex = 0;
@@ -83,9 +73,6 @@ function typewrite() {
 
 typewrite();
 
-// ═══════════════════════════════════════
-// COUNTER ANIMATION
-// ═══════════════════════════════════════
 function animateCounters() {
     document.querySelectorAll('.stats__number').forEach((el) => {
         const target   = parseInt(el.dataset.target, 10);
@@ -115,11 +102,8 @@ if (statsSection) {
     }, { threshold: 0.3 }).observe(statsSection);
 }
 
-// ═══════════════════════════════════════
-// PROJECT FILTER
-// ═══════════════════════════════════════
-const filterBtns    = document.querySelectorAll('.filter-btn');
-const projectCards  = document.querySelectorAll('.project-card');
+const filterBtns   = document.querySelectorAll('.filter-btn');
+const projectCards = document.querySelectorAll('.project-card');
 
 filterBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -132,8 +116,6 @@ filterBtns.forEach((btn) => {
             const tags = card.dataset.tags || '';
             const show = filter === 'all' || tags.includes(filter);
             card.classList.toggle('filtered-out', !show);
-
-            // Re-trigger fade-in for visible cards
             if (show && !card.classList.contains('visible')) {
                 card.classList.add('visible');
             }
@@ -141,9 +123,6 @@ filterBtns.forEach((btn) => {
     });
 });
 
-// ═══════════════════════════════════════
-// CODE TABS — SQL / Python
-// ═══════════════════════════════════════
 const codeTabs = document.querySelectorAll('.code-tab');
 const panels   = {
     sql:    document.getElementById('code-sql'),
@@ -168,9 +147,6 @@ codeTabs.forEach((tab) => {
     });
 });
 
-// ═══════════════════════════════════════
-// COPY CODE
-// ═══════════════════════════════════════
 const copyBtn = document.getElementById('copyBtn');
 
 if (copyBtn) {
@@ -186,11 +162,8 @@ if (copyBtn) {
     });
 }
 
-// ═══════════════════════════════════════
-// RUN CODE (mock output)
-// ═══════════════════════════════════════
-const runBtn        = document.getElementById('runBtn');
-const codeOutput    = document.getElementById('codeOutput');
+const runBtn         = document.getElementById('runBtn');
+const codeOutput     = document.getElementById('codeOutput');
 const codeOutputText = document.getElementById('codeOutputText');
 
 const mockOutputs = {
@@ -240,9 +213,6 @@ if (runBtn) {
     });
 }
 
-// ═══════════════════════════════════════
-// FADE-IN ON SCROLL
-// ═══════════════════════════════════════
 const fadeObserver = new IntersectionObserver(
     (entries) => {
         entries.forEach((entry) => {
@@ -257,25 +227,8 @@ const fadeObserver = new IntersectionObserver(
 
 document.querySelectorAll('.fade-in').forEach((el) => fadeObserver.observe(el));
 
-// ═══════════════════════════════════════
-// SCROLL SPY
-// ═══════════════════════════════════════
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav__link[data-section]');
-
-new IntersectionObserver(
-    (entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                const id = entry.target.id;
-                navLinks.forEach((link) => link.classList.remove('active'));
-                const active = document.querySelector(`.nav__link[data-section="${id}"]`);
-                if (active) active.classList.add('active');
-            }
-        });
-    },
-    { rootMargin: '-48% 0px -48% 0px' }
-).observe(document.getElementById('hero'));
 
 sections.forEach((section) => {
     new IntersectionObserver(
@@ -293,11 +246,7 @@ sections.forEach((section) => {
     ).observe(section);
 });
 
-// ═══════════════════════════════════════
-// CONTACT FORM — Formspree
-// TODO: replace YOUR_FORM_ID with actual Formspree form ID after signup at formspree.io
-// ═══════════════════════════════════════
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID'; // placeholder
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/maqpzvkl';
 
 const contactForm = document.getElementById('contactForm');
 
@@ -313,7 +262,6 @@ if (contactForm) {
         const msgErr  = document.getElementById('messageError');
         let valid = true;
 
-        // Client-side validation
         if (name.value.trim().length < 2) {
             nameErr.textContent = 'Please enter your full name (min 2 characters).';
             valid = false;

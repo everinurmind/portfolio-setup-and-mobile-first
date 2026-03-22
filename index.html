@@ -10,25 +10,21 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-    <!-- Prism.js syntax highlighting -->
-    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- Cursor glow (desktop only) -->
 <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
 
-<!-- Animated background blobs -->
 <div class="blobs" aria-hidden="true">
     <div class="blob blob--1"></div>
     <div class="blob blob--2"></div>
     <div class="blob blob--3"></div>
 </div>
 
-<!-- ─── Header ─── -->
 <header class="header" id="header">
     <nav class="nav container">
         <a href="#hero" class="nav__logo">NS<span class="accent">.</span></a>
@@ -51,7 +47,6 @@
     </nav>
 </header>
 
-<!-- ─── Hero ─── -->
 <section class="hero" id="hero">
     <div class="container hero__inner">
         <div class="hero__content fade-in">
@@ -66,8 +61,7 @@
             </p>
             <div class="hero__buttons">
                 <a href="#projects" class="btn btn--primary">View My Work</a>
-                <!-- TODO: replace href with actual resume PDF path -->
-                <a href="#" class="btn btn--outline" id="resumeBtn">Download Resume</a>
+                                <a href="#" class="btn btn--outline" id="resumeBtn">Download Resume</a>
                 <a href="https://github.com/everinurmind/" class="btn btn--outline" target="_blank" rel="noopener">
                     <svg class="btn__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
                     GitHub
@@ -78,7 +72,6 @@
             </div>
         </div>
 
-        <!-- Desktop decorative data visual -->
         <div class="hero__visual" aria-hidden="true">
             <div class="data-visual">
                 <div class="dv-bar" style="--h:62%; --d:0s"></div>
@@ -107,7 +100,6 @@
     </div>
 </section>
 
-<!-- ─── Stats ─── -->
 <section class="stats" aria-label="Key metrics">
     <div class="container stats__grid">
         <div class="stats__card glass fade-in">
@@ -129,13 +121,11 @@
     </div>
 </section>
 
-<!-- ─── Projects ─── -->
 <section class="projects" id="projects">
     <div class="container">
         <h2 class="section__title fade-in">Featured Projects</h2>
         <p class="section__subtitle fade-in">End-to-end data solutions — from raw data to actionable insights</p>
 
-        <!-- Filter buttons -->
         <div class="project-filters fade-in" role="group" aria-label="Filter projects by technology">
             <button class="filter-btn active" data-filter="all">All</button>
             <button class="filter-btn" data-filter="sql">SQL</button>
@@ -144,7 +134,6 @@
 
         <div class="projects__grid" id="projectsGrid">
 
-            <!-- Project 1: Social Media Engagement Analysis -->
             <article class="project-card glass fade-in" data-tags="python sql">
                 <div class="project-card__header project-card__header--blue">
                     <span class="project-card__icon">📱</span>
@@ -170,7 +159,6 @@
                 </div>
             </article>
 
-            <!-- Project 2: Retail Sales Analysis -->
             <article class="project-card glass fade-in" data-tags="python sql">
                 <div class="project-card__header project-card__header--teal">
                     <span class="project-card__icon">🛒</span>
@@ -206,7 +194,6 @@
     </div>
 </section>
 
-<!-- ─── Skills ─── -->
 <section class="skills" id="skills">
     <div class="container">
         <h2 class="section__title fade-in">Skills &amp; Tools</h2>
@@ -264,7 +251,6 @@
 
         </div>
 
-        <!-- Level legend -->
         <div class="skills__legend fade-in" aria-label="Skill level legend">
             <span><span class="skill-tag skill-tag--expert">Expert</span></span>
             <span><span class="skill-tag skill-tag--advanced">Advanced</span></span>
@@ -274,7 +260,6 @@
     </div>
 </section>
 
-<!-- ─── Code Showcase ─── -->
 <section class="code-showcase" id="code">
     <div class="container">
         <h2 class="section__title fade-in">Code Showcase</h2>
@@ -359,7 +344,6 @@ print(f"\nChampions: {(rfm['rfm_score'] >= 400).sum()} customers")</code></pre>
     </div>
 </section>
 
-<!-- ─── About ─── -->
 <section class="about" id="about">
     <div class="container about__grid fade-in">
         <div class="about__avatar">
@@ -380,7 +364,6 @@ print(f"\nChampions: {(rfm['rfm_score'] >= 400).sum()} customers")</code></pre>
     </div>
 </section>
 
-<!-- ─── Contact ─── -->
 <section class="contact" id="contact">
     <div class="container">
         <h2 class="section__title fade-in">Get in Touch</h2>
@@ -407,7 +390,6 @@ print(f"\nChampions: {(rfm['rfm_score'] >= 400).sum()} customers")</code></pre>
     </div>
 </section>
 
-<!-- ─── Footer ─── -->
 <footer class="footer">
     <div class="container footer__inner">
         <p>&copy; 2026 Nurbol Sultanov. All rights reserved.</p>
@@ -422,7 +404,6 @@ print(f"\nChampions: {(rfm['rfm_score'] >= 400).sum()} customers")</code></pre>
     </div>
 </footer>
 
-<!-- Prism.js -->
 <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-sql.min.js"></script>
